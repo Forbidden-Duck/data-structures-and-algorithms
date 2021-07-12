@@ -1,0 +1,10 @@
+{
+  "name": "data-structures-and-algorithms",
+  "version": "1.0.0",
+  "description": "JavaScript implementation of data structures and algorithms (i.e. Doubly Linked Lists, Quicksort)",
+  "scripts": {
+    "test": "jest --detectOpenHandles"
+  },
+  "author": "Harrison Howard",
+  "license": "MIT"
+}
