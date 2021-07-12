@@ -1,15 +1,10 @@
-/**
- * @private @property {SingleNode} _next
- * @property {SingleNode} next
- * @property {*} data
- */
 module.exports = class SingleNode {
-    /**
-     * 
-     * @param {string} data 
-     */
     constructor(data) {
         this.data = data;
+        /**
+         * @private
+         * @type {SingleNode}
+         */
         this._next = null;
     }
 

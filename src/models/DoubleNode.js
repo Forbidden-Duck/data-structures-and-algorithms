@@ -1,18 +1,15 @@
-/**
- * @private @property {DoubleNode} _next
- * @private @property {DoubleNode} _previous
- * @property {DoubleNode} next
- * @property {DoubleNode} previous
- * @property {*} data
- */
 module.exports = class DoubleNode {
-    /**
-     * 
-     * @param {string} data 
-     */
     constructor(data) {
         this.data = data;
+        /**
+         * @private
+         * @type {DoubleNode}
+         */
         this._next = null;
+        /**
+         * @private
+         * @type {DoubleNode}
+         */
         this._previous = null;
     }
 
