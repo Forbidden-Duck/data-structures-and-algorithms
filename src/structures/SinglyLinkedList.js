@@ -305,6 +305,12 @@ module.exports = class SinglyLinkedList {
         const node = new SingleNode(data);
         focusedNode = focusedNode.next;
         while (focusedNode !== null) {
+            /**
+             * If both data properties match
+             * Doing this will ensure checking the next node instances succeeds
+             * Essentially skipping the process
+             */
+            node._next = focusedNode._next;
             // Compare the focusedNode to the node
             if (SingleNode.compareInstance(node, focusedNode)) {
                 return focusedNode;

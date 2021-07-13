@@ -42,6 +42,7 @@ module.exports = class SingleNode {
                 }
             }
         }
-        return true;
+        // Check both instances next nodes are correct
+        return SingleNode.compareInstance(a._next, b._next);
     }
 };
