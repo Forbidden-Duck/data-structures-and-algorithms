@@ -47,7 +47,7 @@ module.exports = class SinglyLinkedList {
             this._tail = node;
         } else {
             // Set node as the head node & set the original head as the next node
-            node.next = this._head;
+            node._next = this._head;
             this._head = node;
         }
         return this._head;
@@ -79,7 +79,7 @@ module.exports = class SinglyLinkedList {
             this._tail = node;
         } else {
             // Set the next node of the tail node as this node, then set the tail as this node
-            this._tail.next = node;
+            this._tail._next = node;
             this._tail = node;
         }
         return this._tail;
@@ -117,10 +117,10 @@ module.exports = class SinglyLinkedList {
                 // Update the focusedNode
                 focusedNode = focusedNode.next;
             }
-            nodeBeforeNodeBefore.next = node;
+            nodeBeforeNodeBefore._next = node;
         }
 
-        node.next = nodeBefore;
+        node._next = nodeBefore;
     }
 
     /**
@@ -154,8 +154,8 @@ module.exports = class SinglyLinkedList {
             this._tail = node;
         }
 
-        node.next = nodeAfter.next;
-        nodeAfter.next = node;
+        node._next = nodeAfter.next;
+        nodeAfter._next = node;
 
         // Return the next node of nodeAfter, if insertAfter failed nodeAfter.next should be empty
         return nodeAfter.next;
@@ -196,8 +196,8 @@ module.exports = class SinglyLinkedList {
         while (focusedNode !== null) {
             // If the focusNode's next node is this node
             // Set the next node of focusedNode as this node
-            if (focusedNode.next === node) {
-                focusedNode.next = node.next;
+            if (focusedNode._next === node) {
+                focusedNode._next = node.next;
                 // If the tail node is null, set the tail as node's next node
                 if (this._tail === null) {
                     this._tail = node.next;
