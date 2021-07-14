@@ -31,8 +31,9 @@ module.exports = class SinglyLinkedList {
             if (node.length <= 0) {
                 return this._head;
             }
-            for (const nodeItem of node) {
-                this.prepend(nodeItem);
+            // Loop through the nodes in reverse
+            for (const i = node.length - 1; i >= 0; i--) {
+                this.prepend(node[i]);
             }
             return this._head;
         }
@@ -63,9 +64,8 @@ module.exports = class SinglyLinkedList {
             if (node.length <= 0) {
                 return this._tail;
             }
-            // Loop through the nodes in reverse
-            for (const i = node.length - 1; i >= 0; i--) {
-                this.append(node[i]);
+            for (const nodeItem of node) {
+                this.append(nodeItem);
             }
             return this._tail;
         }
