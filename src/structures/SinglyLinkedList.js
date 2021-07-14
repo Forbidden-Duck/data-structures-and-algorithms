@@ -32,7 +32,7 @@ module.exports = class SinglyLinkedList {
                 return this._head;
             }
             // Loop through the nodes in reverse
-            for (const i = node.length - 1; i >= 0; i--) {
+            for (let i = node.length - 1; i >= 0; i--) {
                 this.prepend(node[i]);
             }
             return this._head;
@@ -136,7 +136,7 @@ module.exports = class SinglyLinkedList {
                 throw new Error("node can not be an empty array");
             }
             // Loop through the nodes in reverse
-            for (const i = node.length - 1; i >= 0; i--) {
+            for (let i = node.length - 1; i >= 0; i--) {
                 this.insertAfter(node[i], nodeAfter);
             }
             return this._tail;
