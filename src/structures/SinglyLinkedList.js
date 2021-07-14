@@ -20,6 +20,8 @@ module.exports = class SinglyLinkedList {
         return this._tail;
     }
 
+    // TODO Add array similar functionality?
+
     /**
      * Prepend a node to the start of the list
      * @param {SingleNode} node
