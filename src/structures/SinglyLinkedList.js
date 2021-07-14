@@ -100,7 +100,7 @@ module.exports = class SinglyLinkedList {
             for (const nodeItem of node) {
                 this.insertBefore(nodeItem, nodeBefore);
             }
-            return this._head;
+            return node[0]; // Return the first node of the array
         }
         // Ensure both node and nodeBefore are instances of SingleNode
         if (!(node instanceof SingleNode)) {
@@ -151,7 +151,7 @@ module.exports = class SinglyLinkedList {
             for (let i = node.length - 1; i >= 0; i--) {
                 this.insertAfter(node[i], nodeAfter);
             }
-            return nodeAfter.next;
+            return node[node.length - 1]; // Return the last node of the array
         }
         // Ensure both node and nodeAfter are instances of SingleNode
         if (!(node instanceof SingleNode)) {
