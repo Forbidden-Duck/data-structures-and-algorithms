@@ -99,7 +99,7 @@ module.exports = class SinglyLinkedList {
             }
             // Loop through the nodes in reverse
             for (let i = node.length - 1; i >= 0; i--) {
-                this.insertBefore(node[i], nodeAfter);
+                this.insertBefore(node[i], nodeBefore);
             }
             return this.getNodeBefore(nodeBefore);
         }
