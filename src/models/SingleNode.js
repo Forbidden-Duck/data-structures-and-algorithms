@@ -19,6 +19,10 @@ module.exports = class SingleNode {
      * @returns 
      */
     static compareInstance(a, b) {
+        if (!(a instanceof SingleNode)
+            || !(b instanceof SingleNode)) {
+            return null;
+        }
         if (typeof a.data !== typeof b.data) {
             return false;
         }
@@ -42,7 +46,14 @@ module.exports = class SingleNode {
                 }
             }
         }
-        // Check both instances next nodes are correct
-        return SingleNode.compareInstance(a._next, b._next);
+        if (a.next !== null && b.next !== null) {
+            // Check both instances of next nodes are correct
+            return SingleNode.compareInstance(a._next, b._next);
+        }
+        if ((a.next === null && b.next !== null)
+            || (a.next !== null && b.next === null)) {
+            return false;
+        }
+        return true;
     }
 };
