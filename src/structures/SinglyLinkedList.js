@@ -147,8 +147,9 @@ module.exports = class SinglyLinkedList {
             if (node.length <= 0) {
                 throw new TypeError("node can not be an empty array");
             }
-            for (const nodeItem of node) {
-                this.insertAfter(nodeItem, nodeAfter);
+            // Loop through the nodes in reverse
+            for (let i = node.length - 1; i >= 0; i--) {
+                this.insertAfter(node[i], nodeAfter);
             }
             return nodeAfter.next;
         }
