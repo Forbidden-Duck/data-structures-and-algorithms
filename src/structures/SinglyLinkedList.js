@@ -145,7 +145,7 @@ module.exports = class SinglyLinkedList {
         // Handle an array of nodes
         if (Array.isArray(node)) {
             if (node.length <= 0) {
-                throw new Error("node can not be an empty array");
+                throw new TypeError("node can not be an empty array");
             }
             for (const nodeItem of node) {
                 this.insertAfter(nodeItem, nodeAfter);
