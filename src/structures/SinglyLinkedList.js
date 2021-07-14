@@ -101,7 +101,7 @@ module.exports = class SinglyLinkedList {
             for (let i = node.length - 1; i >= 0; i--) {
                 this.insertBefore(node[i], nodeAfter);
             }
-            return this._tail;
+            return this.getNodeBefore(nodeBefore);
         }
         // Ensure both node and nodeBefore are instances of SingleNode
         if (!(node instanceof SingleNode)) {
@@ -132,6 +132,8 @@ module.exports = class SinglyLinkedList {
         }
 
         node._next = nodeBefore;
+        // Return the previous node of nodeBefore, if insertBefore failed getNodeBefore should be empty
+        return this.getNodeBefore(nodeBefore);
     }
 
     /**
@@ -149,7 +151,7 @@ module.exports = class SinglyLinkedList {
             for (const nodeItem of node) {
                 this.insertAfter(nodeItem, nodeAfter);
             }
-            return this._tail;
+            return nodeAfter.next;
         }
         // Ensure both node and nodeAfter are instances of SingleNode
         if (!(node instanceof SingleNode)) {
