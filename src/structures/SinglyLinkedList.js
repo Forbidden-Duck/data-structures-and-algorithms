@@ -92,6 +92,17 @@ module.exports = class SinglyLinkedList {
      * @returns {SingleNode}
      */
     insertBefore(node, nodeBefore) {
+        // Handle an array of node
+        if (Array.isArray(node)) {
+            if (node.length <= 0) {
+                throw new TypeError("node can not be an empty array");
+            }
+            // Loop through the nodes in reverse
+            for (let i = node.length - 1; i >= 0; i--) {
+                this.insertBefore(node[i], nodeAfter);
+            }
+            return this._tail;
+        }
         // Ensure both node and nodeBefore are instances of SingleNode
         if (!(node instanceof SingleNode)) {
             throw new TypeError("node must be an instance of SingleNode");
@@ -135,9 +146,8 @@ module.exports = class SinglyLinkedList {
             if (node.length <= 0) {
                 throw new Error("node can not be an empty array");
             }
-            // Loop through the nodes in reverse
-            for (let i = node.length - 1; i >= 0; i--) {
-                this.insertAfter(node[i], nodeAfter);
+            for (const nodeItem of node) {
+                this.insertAfter(nodeItem, nodeAfter);
             }
             return this._tail;
         }
