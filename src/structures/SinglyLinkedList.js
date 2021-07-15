@@ -117,18 +117,7 @@ module.exports = class SinglyLinkedList {
             this._head = node;
         } else {
             // Find the node before nodeBefore
-            let focusedNode = this._head;
-            let nodeBeforeNodeBefore = null;
-            while (focusedNode !== null) {
-                // If the focusNode's next node is nodeBefore
-                // Set nodeBeforeNodeBefore as focusedNode
-                if (SingleNode.compareInstance(focusedNode.next, nodeBefore)) {
-                    nodeBeforeNodeBefore = focusedNode;
-                }
-
-                // Update the focusedNode
-                focusedNode = focusedNode.next;
-            }
+            const nodeBeforeNodeBefore = this.getNodeBefore(nodeBefore);
             nodeBeforeNodeBefore._next = node;
         }
 
