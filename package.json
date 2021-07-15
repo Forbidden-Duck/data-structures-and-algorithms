@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "JavaScript implementation of data structures and algorithms (i.e. Doubly Linked Lists, Quicksort)",
   "scripts": {
-    "test": "jest --verbose --detectOpenHandles --runInBand"
+    "test": "jest --verbose --detectOpenHandles --runInBand --coverage"
   },
   "author": "Harrison Howard",
   "license": "MIT",
