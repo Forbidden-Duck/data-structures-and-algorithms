@@ -265,4 +265,157 @@ describe("SinglyLinkedList", () => {
             expect(SLL.tail).toMatchObject(insertAfterNodes[2]);
         });
     });
+
+    describe("delete", () => {
+        let deleteNode;
+
+        beforeAll(() => {
+            // Code in describe runs before the test starts
+            deleteNode = SLL._tail;
+        });
+
+        it("should throw a TypeError if a non SingleNode is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => SLL.delete(fakeNode)).toThrow(TypeError);
+        });
+        it("should delete the node from the tail of the list", () => {
+            SLL.delete(deleteNode);
+            expect(SLL.tail).not.toMatchObject(deleteNode);
+            expect(SLL.find(deleteNode.data)).toBeNull();
+        });
+        it("should set the previous node as the new tail node", () => {
+            expect(SLL.tail).toBeInstanceOf(SingleNode);
+        });
+    });
+
+    describe("delete array", () => {
+        const deleteNodes = [
+            // Make sure find doesn't accidentally find another node
+            new SingleNode(100),
+            new SingleNode(200),
+            new SingleNode(300),
+        ];
+
+        beforeAll(() => {
+            SLL.prepend(deleteNodes);
+        });
+
+        it("should throw a TypeError if one/some/all nodes are not a SingleNode instance", () => {
+            const fakeNodes = [{ data: "fake data" }];
+            expect(() => SLL.delete(fakeNodes)).toThrow(TypeError);
+        });
+        it("should delete the nodes from the head of the list", () => {
+            SLL.delete(deleteNodes);
+            expect(SLL.head).not.toMatchObject(deleteNodes[0]);
+            expect(SLL.find(deleteNodes[0].data)).toBeNull();
+            expect(SLL.find(deleteNodes[1].data)).toBeNull();
+            expect(SLL.find(deleteNodes[2].data)).toBeNull();
+        });
+        it("should set the next node as the new head node", () => {
+            expect(SLL.head).toBeInstanceOf(SingleNode);
+        });
+    });
+
+    describe("deleteBefore", () => {
+        let deleteBeforeNode;
+        let nodeBeingDeleted;
+
+        beforeAll(() => {
+            deleteBeforeNode = SLL._tail;
+            nodeBeingDeleted = SLL.getNodeBefore(deleteBeforeNode);
+        });
+
+        it("should throw a TypeError if a non SingleNode is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => SLL.deleteBefore(fakeNode)).toThrow(TypeError);
+        });
+        it("should delete the node before the given node", () => {
+            SLL.deleteBefore(deleteBeforeNode);
+            expect(SLL.tail).toMatchObject(deleteBeforeNode);
+            expect(SLL.getNodeBefore(deleteBeforeNode)).not.toMatchObject(
+                nodeBeingDeleted
+            );
+            expect(SLL.find(nodeBeingDeleted.data)).toBeNull();
+        });
+    });
+
+    describe("deleteBefore array", () => {
+        let deleteBeforeNodes;
+        const nodesBeingDeleted = [new SingleNode(100), new SingleNode(200)];
+
+        beforeAll(() => {
+            deleteBeforeNodes = [SLL._head, SLL._tail];
+            SLL.insertBefore(nodesBeingDeleted[0], deleteBeforeNodes[0]);
+            SLL.insertBefore(nodesBeingDeleted[1], deleteBeforeNodes[1]);
+        });
+
+        it("should throw a TypeError if one/some/all nodes are not a SingleNode instance", () => {
+            const fakeNodes = [{ data: "fake data" }];
+            expect(() => SLL.deleteBefore(fakeNodes)).toThrow(TypeError);
+        });
+        it("should delete the nodes before the given nodes", () => {
+            SLL.deleteBefore(deleteBeforeNodes);
+            expect(SLL.head).toMatchObject(deleteBeforeNodes[0]);
+            expect(SLL.tail).toMatchObject(deleteBeforeNodes[1]);
+            expect(() => SLL.getNodeBefore(deleteBeforeNodes[0])).toThrow(
+                TypeError
+            );
+            expect(SLL.getNodeBefore(SLL.tail)).not.toMatchObject(
+                deleteBeforeNodes[1]
+            );
+            expect(SLL.find(nodesBeingDeleted[0].data)).toBeNull();
+            expect(SLL.find(nodesBeingDeleted[1].data)).toBeNull();
+        });
+    });
+
+    describe("deleteAfter", () => {
+        let deleteAfterNode;
+        let nodeBeingDeleted;
+
+        beforeAll(() => {
+            deleteAfterNode = SLL.getNodeBefore(SLL.tail);
+            nodeBeingDeleted = SLL.tail;
+        });
+
+        it("should throw a TypeError if a non SingleNode is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => SLL.deleteAfter(fakeNode)).toThrow(TypeError);
+        });
+        it("should delete the node after the given node", () => {
+            SLL.deleteAfter(deleteAfterNode);
+            expect(deleteAfterNode.next).toBeNull();
+            expect(SLL.find(nodeBeingDeleted.data)).toBeNull();
+        });
+        it("should set the tail as the node before the deleted node", () => {
+            expect(SLL.tail).toBeInstanceOf(SingleNode);
+            expect(SLL.tail).toMatchObject(deleteAfterNode);
+        });
+    });
+
+    describe("deleteAfter array", () => {
+        let deleteAfterNodes;
+        const nodesBeingDeleted = [new SingleNode(100), new SingleNode(200)];
+
+        beforeAll(() => {
+            deleteAfterNodes = [SLL._head, SLL._tail];
+            SLL.insertAfter(nodesBeingDeleted[0], deleteAfterNodes[0]);
+            SLL.insertAfter(nodesBeingDeleted[1], deleteAfterNodes[1]);
+        });
+
+        it("should throw a TypeError if one/some/all nodes are not a SingleNode instance", () => {
+            const fakeNodes = [{ data: "fake data" }];
+            expect(() => SLL.deleteAfter(fakeNodes)).toThrow(TypeError);
+        });
+        it("should delete the nodes after the given nodes", () => {
+            SLL.deleteAfter(deleteAfterNodes);
+            expect(SLL.head).toMatchObject(deleteAfterNodes[0]);
+            expect(SLL.tail).toMatchObject(deleteAfterNodes[1]);
+            expect(deleteAfterNodes[0].next).not.toMatchObject(
+                nodesBeingDeleted[0]
+            );
+            expect(deleteAfterNodes[1].next).toBeNull();
+            expect(SLL.find(nodesBeingDeleted[0].data)).toBeNull();
+            expect(SLL.find(nodesBeingDeleted[1].data)).toBeNull();
+        });
+    });
 });

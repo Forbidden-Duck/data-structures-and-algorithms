@@ -355,6 +355,18 @@ module.exports = class SinglyLinkedList {
     }
 
     /**
+     * Create a clone of this list and it's nodes
+     * @returns {SinglyLinkedList}
+     */
+    clone() {
+        const list = new SinglyLinkedList();
+        this.forEach((node) => {
+            list.append(new SingleNode(node.data)); // Ensure the nodes are immutable
+        });
+        return list;
+    }
+
+    /**
      * Return the size of the linked list
      * @return {number}
      */
