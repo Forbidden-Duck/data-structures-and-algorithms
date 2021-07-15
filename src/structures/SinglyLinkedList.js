@@ -370,7 +370,7 @@ module.exports = class SinglyLinkedList {
      * Return the size of the linked list
      * @return {number}
      */
-    size() {
+    get size() {
         let size = 0;
         let focusedNode = this._head;
         // For every node increase the size
