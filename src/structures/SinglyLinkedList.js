@@ -185,6 +185,7 @@ module.exports = class SinglyLinkedList {
                 if (this._tail === null) {
                     this._tail = node.next;
                 }
+                return;
             }
 
             // Update the focusedNode
@@ -217,8 +218,10 @@ module.exports = class SinglyLinkedList {
         while (focusedNode !== null) {
             // If the focusNode's next node is this node
             // Delete focusedNode
-            if (SingleNode.compareInstance(focusedNode.next, node))
+            if (SingleNode.compareInstance(focusedNode.next, node)) {
                 this.delete(focusedNode);
+                return;
+            }
 
             // Update the focusedNode
             focusedNode = focusedNode.next;
