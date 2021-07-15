@@ -568,3 +568,15 @@ describe("SinglyLinkedList", () => {
         });
     });
 });
+
+describe("SinglyLinkedList test", () => {
+    it("SLL should finish with numbers in order", () => {
+        let currentNumber = SLL.head.data;
+        expect(typeof currentNumber).toBe("number");
+        SLL.forEach((node) => {
+            expect(typeof node.data).toBe("number");
+            expect(node.data).toBe(currentNumber);
+            currentNumber++;
+        });
+    });
+});
