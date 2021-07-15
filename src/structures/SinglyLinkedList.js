@@ -278,7 +278,7 @@ module.exports = class SinglyLinkedList {
     find(data) {
         // Convert the data into a node
         const node = new SingleNode(data);
-        focusedNode = focusedNode.next;
+        let focusedNode = this._head;
         while (focusedNode !== null) {
             /**
              * If both data properties match
