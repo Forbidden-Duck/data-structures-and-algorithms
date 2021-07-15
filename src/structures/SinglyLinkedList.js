@@ -30,18 +30,15 @@ module.exports = class SinglyLinkedList {
     prepend(node) {
         // Handle an array of nodes
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
-                return this._head;
-            }
+            if (node.length <= 0) return this._head;
             // Loop through the nodes in reverse
             for (let i = node.length - 1; i >= 0; i--) {
                 this.prepend(node[i]);
             }
             return this._head;
         }
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
 
         // If head or tail are null, set head and tail as node
         if (this._head === null || this._tail === null) {
@@ -63,17 +60,14 @@ module.exports = class SinglyLinkedList {
     append(node) {
         // Handle an array of nodes
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
-                return this._tail;
-            }
+            if (node.length <= 0) return this._tail;
             for (const nodeItem of node) {
                 this.append(nodeItem);
             }
             return this._tail;
         }
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
 
         // If head or tail are null, set head and tail as node
         if (this._head === null && this._tail === null) {
@@ -96,21 +90,18 @@ module.exports = class SinglyLinkedList {
     insertBefore(node, nodeBefore) {
         // Handle an array of node
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
+            if (node.length <= 0)
                 throw new TypeError("node can not be an empty array");
-            }
             for (const nodeItem of node) {
                 this.insertBefore(nodeItem, nodeBefore);
             }
             return node[0]; // Return the first node of the array
         }
         // Ensure both node and nodeBefore are instances of SingleNode
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
-        if (!(nodeBefore instanceof SingleNode)) {
+        if (!(nodeBefore instanceof SingleNode))
             throw new TypeError("nodeBefore must be an instance of SingleNode");
-        }
 
         // If the list's head is equal to nodeBefore set the head as node
         if (SingleNode.compareInstance(this._head, nodeBefore)) {
@@ -135,9 +126,8 @@ module.exports = class SinglyLinkedList {
     insertAfter(node, nodeAfter) {
         // Handle an array of nodes
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
+            if (node.length <= 0)
                 throw new TypeError("node can not be an empty array");
-            }
             // Loop through the nodes in reverse
             for (let i = node.length - 1; i >= 0; i--) {
                 this.insertAfter(node[i], nodeAfter);
@@ -145,17 +135,14 @@ module.exports = class SinglyLinkedList {
             return node[node.length - 1]; // Return the last node of the array
         }
         // Ensure both node and nodeAfter are instances of SingleNode
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
-        if (!(nodeAfter instanceof SingleNode)) {
+        if (!(nodeAfter instanceof SingleNode))
             throw new TypeError("nodeAfter must be an instance of SingleNode");
-        }
 
         // If the list's tail is equal to nodeAfter set the tail as node
-        if (SingleNode.compareInstance(this._tail, nodeAfter)) {
+        if (SingleNode.compareInstance(this._tail, nodeAfter))
             this._tail = node;
-        }
 
         node._next = nodeAfter.next;
         nodeAfter._next = node;
@@ -171,9 +158,7 @@ module.exports = class SinglyLinkedList {
     delete(node) {
         // Handle an array of nodes
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
-                return;
-            }
+            if (node.length <= 0) return;
             // Loop through the nodes
             for (const nodeItem of node) {
                 this.delete(nodeItem);
@@ -181,9 +166,8 @@ module.exports = class SinglyLinkedList {
             return;
         }
         // Check if node is an instance of SingleNode
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
 
         // Check if the node is the head node
         if (SingleNode.compareInstance(node, this._head)) {
@@ -191,9 +175,7 @@ module.exports = class SinglyLinkedList {
             return;
         }
         // If the node is the tail node set the tail as null
-        if (SingleNode.compareInstance(node, this._tail)) {
-            this._tail = null;
-        }
+        if (SingleNode.compareInstance(node, this._tail)) this._tail = null;
 
         let focusedNode = this._head;
         while (focusedNode !== null) {
@@ -219,9 +201,7 @@ module.exports = class SinglyLinkedList {
     deleteBefore(node) {
         // Handle an array of nodes
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
-                return;
-            }
+            if (node.length <= 0) return;
             // Loop through the nodes
             for (const nodeItem of node) {
                 this.deleteBefore(nodeItem);
@@ -229,21 +209,18 @@ module.exports = class SinglyLinkedList {
         }
 
         // Check if node is an instance of SingleNode
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
         // Check if the node is the head node
-        if (SingleNode.compareInstance(node, this._head)) {
+        if (SingleNode.compareInstance(node, this._head))
             throw new TypeError("There is no node before the head node");
-        }
 
         let focusedNode = this._head;
         while (focusedNode !== null) {
             // If the focusNode's next node is this node
             // Delete focusedNode
-            if (SingleNode.compareInstance(focusedNode.next, node)) {
+            if (SingleNode.compareInstance(focusedNode.next, node))
                 this.delete(focusedNode);
-            }
 
             // Update the focusedNode
             focusedNode = focusedNode.next;
@@ -257,9 +234,7 @@ module.exports = class SinglyLinkedList {
     deleteAfter(node) {
         // Handle an array of nodes
         if (Array.isArray(node)) {
-            if (node.length <= 0) {
-                return;
-            }
+            if (node.length <= 0) return;
             // Loop through the nodes
             for (const nodeItem of node) {
                 this.deleteAfter(nodeItem);
@@ -267,13 +242,11 @@ module.exports = class SinglyLinkedList {
         }
 
         // Check if node is an instance of SingleNode
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
         // Check if node is the tail node
-        if (SingleNode.compareInstance(node, this._tail)) {
+        if (SingleNode.compareInstance(node, this._tail))
             throw new TypeError("There is no node after the tail node");
-        }
         this.delete(node.next);
     }
 
@@ -290,9 +263,8 @@ module.exports = class SinglyLinkedList {
      * @return {SingleNode}
      */
     get(index) {
-        if (isNaN(parseInt(index))) {
+        if (isNaN(parseInt(index)))
             throw new TypeError("index must be a number");
-        }
         return this.toArray()[parseInt(index)];
     }
 
@@ -313,9 +285,8 @@ module.exports = class SinglyLinkedList {
              */
             node._next = focusedNode._next;
             // Compare the focusedNode to the node
-            if (SingleNode.compareInstance(node, focusedNode)) {
+            if (SingleNode.compareInstance(node, focusedNode))
                 return focusedNode;
-            }
 
             // Update the focusedNode
             focusedNode = focusedNode.next;
@@ -330,25 +301,28 @@ module.exports = class SinglyLinkedList {
      */
     getNodeBefore(node) {
         // Check if node is an instance of SingleNode
-        if (!(node instanceof SingleNode)) {
+        if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
-        }
         // Check if the node is the head node
-        if (SingleNode.compareInstance(node, this._head)) {
+        if (SingleNode.compareInstance(node, this._head))
             throw new TypeError("There is no node before the head node");
-        }
 
         let focusedNode = this._head;
         while (focusedNode !== null) {
-            if (SingleNode.compareInstance(node, focusedNode.next)) {
+            if (SingleNode.compareInstance(node, focusedNode.next))
                 return focusedNode;
-            }
-
             // Update the focusedNode
             focusedNode = focusedNode.next;
         }
         return null;
     }
+
+    /**
+     * Filter the list based on the provided callback (does not mutate the original list)
+     * @param {function} callback
+     * @returns {SinglyLinkedList}
+     */
+    filter(callback) {}
 
     /**
      * Return the size of the linked list
@@ -396,9 +370,7 @@ module.exports = class SinglyLinkedList {
                 strOfNodes += focusedNode.data;
             }
             // If focusedNode has a next node add an arrow to the string
-            if (focusedNode.next instanceof SingleNode) {
-                strOfNodes += " -> ";
-            }
+            if (focusedNode.next instanceof SingleNode) strOfNodes += " -> ";
             focusedNode = focusedNode.next;
         }
         return strOfNodes;
@@ -420,9 +392,8 @@ module.exports = class SinglyLinkedList {
                 strOfNodes += focusedNode.data;
             }
             // If focusedNode has a previous node add an arrow to the string
-            if (this.getNodeBefore(focusedNode) instanceof SingleNode) {
+            if (this.getNodeBefore(focusedNode) instanceof SingleNode)
                 strOfNodes += " <- ";
-            }
             focusedNode = this.getNodeBefore(focusedNode);
         }
         return strOfNodes;
