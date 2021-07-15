@@ -20,8 +20,6 @@ module.exports = class SinglyLinkedList {
         return this._tail;
     }
 
-    // TODO Add array similar functionality?
-
     /**
      * Prepend a node to the start of the list
      * @param {SingleNode} node
@@ -318,11 +316,38 @@ module.exports = class SinglyLinkedList {
     }
 
     /**
+     * Loops through the linked list for each item
+     * @param {function} callbackFn (value as SingleNode, this)
+     * @param {*} thisArg If provided it will be used as this for each invocation of the callback
+     */
+    forEach(callbackFn, thisArg) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        if (thisArg) callbackFn = callbackFn.bind(thisArg);
+        let focusedNode = this._head;
+        while (focusedNode !== null) {
+            callbackFn(focusedNode, this);
+            focusedNode = focusedNode.next;
+        }
+    }
+
+    /**
      * Filter the list based on the provided callback (does not mutate the original list)
-     * @param {function} callback
+     * @param {function} callbackFn (value as SingleNode, this)
+     * @param {*} thisArg If provided it will be used as this for each invocation of the callback
      * @returns {SinglyLinkedList}
      */
-    filter(callback) {}
+    filter(callbackFn, thisArg) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        if (thisArg) callbackFn = callbackFn.bind(thisArg);
+        const results = new SinglyLinkedList();
+        this.forEach((node, list) => {
+            if (!callbackFn(node, list)) return;
+            results.append(new SingleNode(node.data));
+        });
+        return results;
+    }
 
     /**
      * Return the size of the linked list
