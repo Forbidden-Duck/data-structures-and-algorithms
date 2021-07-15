@@ -357,9 +357,7 @@ describe("SinglyLinkedList", () => {
             SLL.deleteBefore(deleteBeforeNodes);
             expect(SLL.head).toMatchObject(deleteBeforeNodes[0]);
             expect(SLL.tail).toMatchObject(deleteBeforeNodes[1]);
-            expect(() => SLL.getNodeBefore(deleteBeforeNodes[0])).toThrow(
-                TypeError
-            );
+            expect(SLL.getNodeBefore(deleteBeforeNodes[0])).toBeNull();
             expect(SLL.getNodeBefore(SLL.tail)).not.toMatchObject(
                 deleteBeforeNodes[1]
             );
@@ -416,6 +414,157 @@ describe("SinglyLinkedList", () => {
             expect(deleteAfterNodes[1].next).toBeNull();
             expect(SLL.find(nodesBeingDeleted[0].data)).toBeNull();
             expect(SLL.find(nodesBeingDeleted[1].data)).toBeNull();
+        });
+    });
+
+    describe("clear", () => {
+        const clonedList = SLL.clone();
+
+        it("should delete all nodes in the list", () => {
+            clonedList.clear();
+            expect(clonedList.head).toBeNull();
+            expect(clonedList.tail).toBeNull();
+        });
+    });
+
+    describe("get", () => {
+        it("should throw a TypeError if the value entered is not a number", () => {
+            expect(() => SLL.get(NaN)).toThrow(TypeError);
+        });
+        it("should respond with the node at the index provided", () => {
+            const getHeadNode = SLL.get(0);
+            const getTailNode = SLL.get(SLL.size - 1);
+            expect(getHeadNode).toMatchObject(SLL.head);
+            expect(getTailNode).toMatchObject(SLL.tail);
+        });
+    });
+
+    describe("find", () => {
+        it("should return null if no node is found", () => {
+            const findNode = SLL.find("this is a non existent node");
+            expect(findNode).toBeNull();
+        });
+        it("should respond with the node with the data provided", () => {
+            const findHeadNode = SLL.find(SLL.head.data);
+            const findTailNode = SLL.find(SLL.tail.data);
+            expect(findHeadNode).toMatchObject(SLL.head);
+            expect(findTailNode).toMatchObject(SLL.tail);
+        });
+    });
+
+    describe("getNodeBefore", () => {
+        it("should throw an error if the node is not an instance of SingleNode", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => SLL.getNodeBefore(fakeNode)).toThrow(TypeError);
+        });
+        it("should respond with null if the node is the head node", () => {
+            expect(SLL.getNodeBefore(SLL.head)).toBeNull();
+        });
+        it("should respond with the node before the given node", () => {
+            const expectedNode = SLL.head;
+            const node = expectedNode.next;
+            const getNodeBefore = SLL.getNodeBefore(node);
+            expect(getNodeBefore).toBeInstanceOf(SingleNode);
+            expect(getNodeBefore).toMatchObject(expectedNode);
+        });
+    });
+
+    describe("forEach", () => {
+        it("should throw a TypeError if the callback function is not a function", () => {
+            expect(() => SLL.forEach()).toThrow(TypeError);
+        });
+        it("should loop through all the nodes in the list", () => {
+            let focusedNode = SLL.head;
+            SLL.forEach((node, list) => {
+                expect(node).toMatchObject(focusedNode);
+                expect(list).toMatchObject(SLL);
+                focusedNode = focusedNode.next;
+            });
+        });
+        it("should bind thisArg to the function", () => {
+            let forEachBind;
+            SLL.forEach(function () {
+                forEachBind = this;
+            }, SLL.head);
+            expect(forEachBind).toMatchObject(SLL.head);
+        });
+    });
+
+    describe("filter", () => {
+        it("should throw a TypeError if the callback function is not a function", () => {
+            expect(() => SLL.filter()).toThrow(TypeError);
+        });
+        it("should loop through all the nodes in the list", () => {
+            let focusedNode = SLL.head;
+            SLL.filter((node, list) => {
+                expect(node).toMatchObject(focusedNode);
+                expect(list).toMatchObject(SLL);
+                focusedNode = focusedNode.next;
+            });
+        });
+        it("should bind thisArg to the function", () => {
+            let filterBind;
+            SLL.filter(function () {
+                filterBind = this;
+            }, SLL.head);
+            expect(filterBind).toMatchObject(SLL.head);
+        });
+        it("should remove nodes that don't pass the filter", () => {
+            const expectedList = SLL.clone();
+            expectedList.delete(SLL.head);
+            const filterList = SLL.filter((node) => {
+                if (!SingleNode.compareInstance(node, SLL.head)) {
+                    return true;
+                }
+            });
+            expect(filterList).toMatchObject(expectedList);
+        });
+    });
+
+    describe("clone", () => {
+        let cloneList;
+
+        it("should clone the list", () => {
+            expect((clonelist = SLL.clone())).toMatchObject(SLL);
+        });
+        it("should not affect the original list", () => {
+            clonelist.get(0).data = "bad";
+            expect(clonelist.get(0).data).toStrictEqual("bad");
+            expect(SLL.get(0).data).not.toStrictEqual("bad");
+        });
+    });
+
+    describe("size", () => {
+        it("should return the size of the list", () => {
+            const list = new SinglyLinkedList();
+            list.append(new SingleNode(1));
+            expect(list.size).toBe(1);
+        });
+    });
+
+    describe("toArray", () => {
+        it("should return an array of the nodes", () => {
+            const list = new SinglyLinkedList();
+            list.append(new SingleNode(1));
+            expect(list.toArray()).toMatchObject([new SingleNode(1)]);
+        });
+    });
+
+    describe("toString", () => {
+        it("should return a string representation of the list", () => {
+            const list = new SinglyLinkedList();
+            list.append(new SingleNode(1));
+            list.append(new SingleNode(2));
+            expect(list.toString()).toStrictEqual("1 -> 2");
+        });
+    });
+
+    describe("toStringReverse", () => {
+        it("should return a string representation of the list in reverse", () => {
+            const list = new SinglyLinkedList();
+            list.append(new SingleNode(1));
+            list.append(new SingleNode(2));
+            expect(list.toStringReverse()).toStrictEqual("2 <- 1");
         });
     });
 });
