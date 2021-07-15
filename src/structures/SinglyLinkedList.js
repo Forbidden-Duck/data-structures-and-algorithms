@@ -181,9 +181,10 @@ module.exports = class SinglyLinkedList {
             // Set the next node of focusedNode as this node
             if (focusedNode._next === node) {
                 focusedNode._next = node.next;
-                // If the tail node is null, set the tail as node's next node
+                // If the tail node is null
+                // Set it as the next node or the node before
                 if (this._tail === null) {
-                    this._tail = node.next;
+                    this._tail = node._next || focusedNode;
                 }
                 return;
             }
