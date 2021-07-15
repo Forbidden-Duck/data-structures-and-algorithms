@@ -206,8 +206,8 @@ module.exports = class SinglyLinkedList {
             for (const nodeItem of node) {
                 this.deleteBefore(nodeItem);
             }
+            return;
         }
-
         // Check if node is an instance of SingleNode
         if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
@@ -241,6 +241,7 @@ module.exports = class SinglyLinkedList {
             for (const nodeItem of node) {
                 this.deleteAfter(nodeItem);
             }
+            return;
         }
 
         // Check if node is an instance of SingleNode
