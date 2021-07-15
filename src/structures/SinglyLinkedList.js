@@ -307,8 +307,7 @@ module.exports = class SinglyLinkedList {
         if (!(node instanceof SingleNode))
             throw new TypeError("node must be an instance of SingleNode");
         // Check if the node is the head node
-        if (SingleNode.compareInstance(node, this._head))
-            throw new TypeError("There is no node before the head node");
+        if (SingleNode.compareInstance(node, this._head)) return null;
 
         let focusedNode = this._head;
         while (focusedNode !== null) {
