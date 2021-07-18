@@ -43,11 +43,6 @@ module.exports = class SingleNode {
         if (a.next !== null && b.next !== null)
             // Check both instances of next nodes are correct
             return SingleNode.compareInstance(a._next, b._next);
-        if (
-            (a.next === null && b.next !== null) ||
-            (a.next !== null && b.next === null)
-        )
-            return false;
         return true;
     }
 };
