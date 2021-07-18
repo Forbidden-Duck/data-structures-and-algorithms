@@ -215,6 +215,25 @@ module.exports = class DoublyLinkedList {
     }
 
     /**
+     * Find a node based on the specified data
+     * @param {*} data
+     * @returns {DoubleNode}
+     */
+    find(data) {
+        const node = new DoubleNode(data);
+        let focusedNode = this.head;
+        while (focusedNode !== null) {
+            // Pretend the data is a node in the list
+            node._next = focusedNode.next;
+            node._previous = focusedNode.previous;
+            if (DoubleNode.compareInstance(node, focusedNode))
+                return focusedNode;
+            focusedNode = focusedNode.next;
+        }
+        return null;
+    }
+
+    /**
      * Convert the list into an array of nodes
      * @returns {DoubleNode[]}
      */
