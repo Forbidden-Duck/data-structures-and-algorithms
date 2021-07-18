@@ -268,6 +268,16 @@ module.exports = class DoublyLinkedList {
     }
 
     /**
+     * Immutably clone the list and it's nodes
+     * @returns {DoublyLinkedList}
+     */
+    clone() {
+        const list = new DoublyLinkedList();
+        this.forEach((node) => list.append(new DoubleNode(node.data)));
+        return list;
+    }
+
+    /**
      * Convert the list into an array of nodes
      * @returns {DoubleNode[]}
      */
