@@ -234,6 +234,22 @@ module.exports = class DoublyLinkedList {
     }
 
     /**
+     * Loops through the list for each item
+     * @param {function} callbackFn
+     * @param {*} thisArg If provided it will be used as this for each invocation of the callback
+     */
+    forEach(callbackFn, thisArg) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        if (thisArg) callbackFn = callbackFn.bind(thisArg);
+        let focusedNode = this.head;
+        while (focusedNode !== null) {
+            callbackFn(focusedNode, this);
+            focusedNode = focusedNode.next;
+        }
+    }
+
+    /**
      * Convert the list into an array of nodes
      * @returns {DoubleNode[]}
      */
