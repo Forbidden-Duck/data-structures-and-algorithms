@@ -29,7 +29,6 @@ module.exports = class DoublyLinkedList {
         // Handle an array of nodes
         if (Array.isArray(node)) {
             if (node.length <= 0) return this.head;
-            // Loop through the nodes in reverse
             for (let i = node.length - 1; i >= 0; i--) {
                 this.prepend(node[i]);
             }
@@ -38,13 +37,10 @@ module.exports = class DoublyLinkedList {
         if (!(node instanceof DoubleNode))
             throw new TypeError("node must be instance of DoubleNode");
 
-        // If head or tail are null, set the head and tail as node
         if (this._head === null || this._tail === null) {
             this._head = node;
             this._tail = node;
         } else {
-            // Set node's next node as the original head node,
-            // set the original head's previous as node and set node as the head node
             node._next = this._head;
             this._head.previous = node;
             this._head = node;
@@ -69,17 +65,49 @@ module.exports = class DoublyLinkedList {
         if (!(node instanceof DoubleNode))
             throw new TypeError("node must be instanceof DoubleNode");
 
-        // If head or tail are null, set the head and tail as node
         if (this._head === null || this._tail === null) {
             this._head = node;
             this._tail = node;
         } else {
-            // Set node's previous node as the original tail node,
-            // Set the original tail's next node as node and set the tail node as node
             node._previous = this._tail;
             this._tail.next = node;
             this._tail = node;
         }
         return this.tail;
+    }
+
+    /**
+     * Insert node before nodeBefore
+     * @param {DoubleNode} node
+     * @param {DoubleNode} nodeBefore
+     * @returns {DoubleNode}
+     */
+    insertBefore(node, nodeBefore) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0)
+                throw new TypeError("node can not be an empty array");
+            for (const nodeItem of node) {
+                this.insertBefore(nodeItem, nodeBefore);
+            }
+            return node[0];
+        }
+        // Ensure both node and nodeBefore are instances of DoubleNode
+        if (!(node instanceof DoubleNode))
+            throw new TypeError("node must be instance of DoubleNode");
+        if (!(nodeBefore instanceof DoubleNode))
+            throw new TypeError("nodeBefore must be instance of DoubleNode");
+
+        if (DoubleNode.compareInstance(this._head, nodeBefore))
+            this._head = node;
+
+        node._previous = nodeBefore._previous;
+        nodeBefore._previous = node;
+        node._next = nodeBefore;
+        // If node's previous isn't null set node's previous next node as node
+        if (node._previous !== null) {
+            node._previous._next = node;
+        }
+        return nodeBefore.previous;
     }
 };
