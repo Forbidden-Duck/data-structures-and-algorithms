@@ -186,7 +186,7 @@ module.exports = class DoublyLinkedList {
         if (Array.isArray(node)) {
             if (node.length <= 0) return;
             for (const nodeItem of node) {
-                this.deleteAfter(node);
+                this.deleteAfter(nodeItem);
             }
             return;
         }
