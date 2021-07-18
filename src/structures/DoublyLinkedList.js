@@ -195,4 +195,25 @@ module.exports = class DoublyLinkedList {
         if (node.next === null) return;
         this.delete(node.next);
     }
+
+    /**
+     * Delete all the nodes in the list
+     */
+    clear() {
+        this.delete(this.toArray());
+    }
+
+    /**
+     * Convert the list into an array of nodes
+     * @returns {DoubleNode[]}
+     */
+    toArray() {
+        let nodes = [];
+        let focusedNode = this.head;
+        while (focusedNode !== null) {
+            nodes.push(focusedNode);
+            focusedNode = focusedNode.next;
+        }
+        return nodes;
+    }
 };
