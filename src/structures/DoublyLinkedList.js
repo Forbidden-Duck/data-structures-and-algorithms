@@ -161,4 +161,15 @@ module.exports = class DoublyLinkedList {
         if (node._previous !== null) node._previous._next = node._next;
         if (node._next !== null) node._next._previous = node._previous;
     }
+
+    /**
+     * Delete the node before the specified node
+     * @param {DoubleNode} node
+     */
+    deleteBefore(node) {
+        if (!(node instanceof DoubleNode))
+            throw new TypeError("node must be instance of DoubleNode");
+        if (node.previous === null) return;
+        this.delete(node.previous);
+    }
 };
