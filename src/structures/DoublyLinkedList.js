@@ -180,4 +180,19 @@ module.exports = class DoublyLinkedList {
         if (node.previous === null) return;
         this.delete(node.previous);
     }
+
+    deleteAfter(node) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0) return;
+            for (const nodeItem of node) {
+                this.deleteAfter(node);
+            }
+            return;
+        }
+        if (!(node instanceof DoubleNode))
+            throw new TypeError("node must be instance of DoubleNode");
+        if (node.next === null) return;
+        this.delete(node.next);
+    }
 };
