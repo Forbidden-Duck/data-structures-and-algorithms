@@ -42,7 +42,7 @@ module.exports = class DoublyLinkedList {
             this._tail = node;
         } else {
             node._next = this._head;
-            this._head.previous = node;
+            this._head._previous = node;
             this._head = node;
         }
         return this.head;
@@ -70,7 +70,7 @@ module.exports = class DoublyLinkedList {
             this._tail = node;
         } else {
             node._previous = this._tail;
-            this._tail.next = node;
+            this._tail._next = node;
             this._tail = node;
         }
         return this.tail;
