@@ -235,7 +235,7 @@ module.exports = class DoublyLinkedList {
 
     /**
      * Loops through the list for each item
-     * @param {function} callbackFn
+     * @param {function} callbackFn (value as DoubleNode, this)
      * @param {*} thisArg If provided it will be used as this for each invocation of the callback
      */
     forEach(callbackFn, thisArg) {
@@ -247,6 +247,24 @@ module.exports = class DoublyLinkedList {
             callbackFn(focusedNode, this);
             focusedNode = focusedNode.next;
         }
+    }
+
+    /**
+     * Immutably filter the list based on the specified callback
+     * @param {function} callbackFn (value as DoubleNode, this)
+     * @param {*} thisArg If provided it will be used as this for each invocation of the callback
+     * @returns {DoublyLinkedList}
+     */
+    filter(callbackFn, thisArg) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        if (thisArg) callbackFn = callbackFn.bind(thisArg);
+        const results = new DoublyLinkedList();
+        this.forEach((node, list) => {
+            if (!callbackFn(node, list)) return;
+            results.append(new DoubleNode(node.data));
+        });
+        return results;
     }
 
     /**
