@@ -278,6 +278,20 @@ module.exports = class DoublyLinkedList {
     }
 
     /**
+     * Return the size of the list
+     * @returns {number}
+     */
+    get size() {
+        let size = 0;
+        let focusedNode = this.head;
+        while (focusedNode !== null) {
+            size++;
+            focusedNode = focusedNode.next;
+        }
+        return size;
+    }
+
+    /**
      * Convert the list into an array of nodes
      * @returns {DoubleNode[]}
      */
