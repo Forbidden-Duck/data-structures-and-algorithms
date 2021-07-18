@@ -110,4 +110,38 @@ module.exports = class DoublyLinkedList {
         }
         return nodeBefore.previous;
     }
+
+    /**
+     * Insert node after nodeAfter
+     * @param {DoubleNode} node
+     * @param {DoubleNode} nodeAfter
+     * @returns {DoubleNode}
+     */
+    insertAfter(node, nodeAfter) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0)
+                throw new TypeError("node can not be an empty array");
+            for (let i = node.length - 1; i >= 0; i--) {
+                this.insertAfter(node[i], nodeAfter);
+            }
+            return node[node.length - 1];
+        }
+        // Ensure both node and nodeAfter are instances of DoubleNode
+        if (!(node instanceof DoubleNode))
+            throw new TypeError("node must be instance of DoubleNode");
+        if (!(nodeAfter instanceof DoubleNode))
+            throw new TypeError("nodeAfter must be instance of DoubleNode");
+
+        if (DoubleNode.compareInstance(this._tail, nodeAfter))
+            this._tail = node;
+
+        node._next = nodeAfter._next;
+        nodeAfter._next = node;
+        node._previous = nodeAfter;
+        if (node._next !== null) {
+            node._next._previous = node;
+        }
+        return nodeAfter.next;
+    }
 };
