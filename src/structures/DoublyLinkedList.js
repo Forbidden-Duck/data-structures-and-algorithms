@@ -150,6 +150,14 @@ module.exports = class DoublyLinkedList {
      * @param {DoubleNode} node
      */
     delete(node) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0) return;
+            for (const nodeItem of node) {
+                this.delete(nodeItem);
+            }
+            return;
+        }
         // Check if node is an instance of DoubleNode
         if (!(node instanceof DoubleNode))
             throw new TypeError("node must be instance of DoubleNode");
