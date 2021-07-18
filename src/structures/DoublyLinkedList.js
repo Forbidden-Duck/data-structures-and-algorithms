@@ -323,4 +323,23 @@ module.exports = class DoublyLinkedList {
         }
         return strOfNodes;
     }
+
+    /**
+     * Convert the list into a reversed string of nodes
+     * @returns {string}
+     */
+    toStringReverse() {
+        let strOfNodes = "";
+        let focusedNode = this.tail;
+        while (focusedNode !== null) {
+            if (focusedNode.data.toString()) {
+                strOfNodes += focusedNode.data.toString();
+            } else {
+                strOfNodes += focusedNode.data;
+            }
+            if (focusedNode.next instanceof DoubleNode) strOfNodes += " <- ";
+            focusedNode = focusedNode.previous;
+        }
+        return strOfNodes;
+    }
 };
