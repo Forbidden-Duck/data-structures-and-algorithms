@@ -25,8 +25,9 @@ module.exports = class DoubleNode {
      * Compare two instances of DoubleNode
      * @param {DoubleNode} a
      * @param {DoubleNode} b
+     * @param {"next" | "previous"} [skip] used to prevent call back errors
      */
-    static compareInstance(a, b) {
+    static compareInstance(a, b, skip) {
         if (!(a instanceof DoubleNode) || !(b instanceof DoubleNode))
             return null;
         if (typeof a.data !== typeof b.data) return false;
@@ -48,12 +49,15 @@ module.exports = class DoubleNode {
             }
         }
 
-        // Check every instance of next and previous nodes are truthy
-        if (a.next !== null && b.next !== null) {
-            if (!DoubleNode.compareInstance(a._next, b._next)) return false;
+        // Check every instance of next or previous nodes are truthy
+        if (a.next !== null && b.next !== null && skip !== "next") {
+            // Stops it going back up the list
+            if (!DoubleNode.compareInstance(a._next, b._next, "previous"))
+                return false;
         }
-        if (a.previous !== null && b.previous !== null) {
-            if (!DoubleNode.compareInstance(a._previous, b._previous))
+        if (a.previous !== null && b.previous !== null && skip !== "previous") {
+            // Stops it going back down the list
+            if (!DoubleNode.compareInstance(a._previous, b._previous, "next"))
                 return false;
         }
         return true;
