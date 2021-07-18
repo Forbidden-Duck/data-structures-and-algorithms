@@ -204,6 +204,17 @@ module.exports = class DoublyLinkedList {
     }
 
     /**
+     * Get a node based on the index provided
+     * @param {number} index
+     * @returns {DoubleNode}
+     */
+    get(index) {
+        if (isNaN(parseInt(index)))
+            throw new TypeError("index must be a number");
+        return this.toArray()[parseInt(index)];
+    }
+
+    /**
      * Convert the list into an array of nodes
      * @returns {DoubleNode[]}
      */
