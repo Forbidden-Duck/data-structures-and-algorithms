@@ -165,7 +165,7 @@ module.exports = class DoublyLinkedList {
         if (DoubleNode.compareInstance(node, this._head))
             this._head = node._next;
         if (DoubleNode.compareInstance(node, this._tail))
-            this._tail = node.previous;
+            this._tail = node._previous;
         if (node._previous !== null) node._previous._next = node._next;
         if (node._next !== null) node._next._previous = node._previous;
     }
@@ -345,7 +345,8 @@ module.exports = class DoublyLinkedList {
             } else {
                 strOfNodes += focusedNode.data;
             }
-            if (focusedNode.next instanceof DoubleNode) strOfNodes += " <- ";
+            if (focusedNode.previous instanceof DoubleNode)
+                strOfNodes += " <- ";
             focusedNode = focusedNode.previous;
         }
         return strOfNodes;
