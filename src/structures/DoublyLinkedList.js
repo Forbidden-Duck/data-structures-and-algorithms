@@ -51,4 +51,35 @@ module.exports = class DoublyLinkedList {
         }
         return this.head;
     }
+
+    /**
+     * Append a node to the end of the list
+     * @param {DoubleNode} node
+     * @returns {DoubleNode}
+     */
+    append(node) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0) return this.tail;
+            for (const nodeItem of node) {
+                this.append(nodeItem);
+            }
+            return this.tail;
+        }
+        if (!(node instanceof DoubleNode))
+            throw new TypeError("node must be instanceof DoubleNode");
+
+        // If head or tail are null, set the head and tail as node
+        if (this._head === null || this._tail === null) {
+            this._head = node;
+            this._tail = node;
+        } else {
+            // Set node's previous node as the original tail node,
+            // Set the original tail's next node as node and set the tail node as node
+            node._previous = this._tail;
+            this._tail.next = node;
+            this._tail = node;
+        }
+        return this.tail;
+    }
 };
