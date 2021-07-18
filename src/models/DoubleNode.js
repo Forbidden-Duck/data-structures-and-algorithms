@@ -56,11 +56,6 @@ module.exports = class DoubleNode {
             if (!DoubleNode.compareInstance(a._previous, b._previous))
                 return false;
         }
-        if (
-            [false, null].includes(nextTruthy) ||
-            [false, null].includes(previousTruthy)
-        )
-            return false;
         return true;
     }
 };
