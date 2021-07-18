@@ -32,9 +32,11 @@ module.exports = class SingleNode {
             }
             case "function": {
                 if (a.data.toString() !== b.data.toString()) return false;
+                break;
             }
             default: {
                 if (a.data !== b.data) return false;
+                break;
             }
         }
 
