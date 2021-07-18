@@ -304,4 +304,23 @@ module.exports = class DoublyLinkedList {
         }
         return nodes;
     }
+
+    /**
+     * Convert the list into a string of nodes
+     * @returns {string}
+     */
+    toString() {
+        let strOfNodes = "";
+        let focusedNode = this.head;
+        while (focusedNode !== null) {
+            if (focusedNode.data.toString()) {
+                strOfNodes += focusedNode.data.toString();
+            } else {
+                strOfNodes += focusedNode.data;
+            }
+            if (focusedNode.next instanceof DoubleNode) strOfNodes += " -> ";
+            focusedNode = focusedNode.next;
+        }
+        return strOfNodes;
+    }
 };
