@@ -14,7 +14,7 @@ module.exports = class Queue {
      * @returns {*}
      */
     get peek() {
-        return this.isEmpty() ? this.elements.head.data : null;
+        return this.isEmpty() ? null : this.elements.head.data;
     }
 
     /**
