@@ -278,13 +278,13 @@ module.exports = class SinglyLinkedList {
     find(callbackFn) {
         if (!(callbackFn instanceof Function))
             throw new TypeError("callbackFn must be a function");
-        let foundNode = null;
-        this.forEach((node) => {
-            if (callbackFn(node) === true && foundNode === null) {
-                foundNode = node;
+        let node = null;
+        this.forEach((focusedNode) => {
+            if (callbackFn(focusedNode) && node === null) {
+                node = focusedNode;
             }
         });
-        return foundNode;
+        return node;
     }
 
     /**
