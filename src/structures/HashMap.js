@@ -13,7 +13,7 @@ module.exports = class HashMap {
      *
      * @param {number} hashMapSize
      */
-    constructor(hashMapSize) {
+    constructor(hashMapSize = DEFAULT_SIZE) {
         // Each bucket uses a SinglyLinkedList based on the size
         this.buckets = Array(hashMapSize)
             .fill(null)
