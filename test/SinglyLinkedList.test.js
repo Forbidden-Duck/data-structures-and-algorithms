@@ -281,7 +281,9 @@ describe("SinglyLinkedList", () => {
         it("should delete the node from the tail of the list", () => {
             SLL.delete(deleteNode);
             expect(SLL.tail).not.toMatchObject(deleteNode);
-            expect(SLL.find(deleteNode.data)).toBeNull();
+            expect(
+                SLL.find((node) => node.data === deleteNode.data)
+            ).toBeNull();
         });
         it("should set the previous node as the new tail node", () => {
             expect(SLL.tail).toBeInstanceOf(SingleNode);
@@ -307,9 +309,15 @@ describe("SinglyLinkedList", () => {
         it("should delete the nodes from the head of the list", () => {
             SLL.delete(deleteNodes);
             expect(SLL.head).not.toMatchObject(deleteNodes[0]);
-            expect(SLL.find(deleteNodes[0].data)).toBeNull();
-            expect(SLL.find(deleteNodes[1].data)).toBeNull();
-            expect(SLL.find(deleteNodes[2].data)).toBeNull();
+            expect(
+                SLL.find((node) => node.data === deleteNodes[0].data)
+            ).toBeNull();
+            expect(
+                SLL.find((node) => node.data === deleteNodes[1].data)
+            ).toBeNull();
+            expect(
+                SLL.find((node) => node.data === deleteNodes[2].data)
+            ).toBeNull();
         });
         it("should set the next node as the new head node", () => {
             expect(SLL.head).toBeInstanceOf(SingleNode);
@@ -335,7 +343,9 @@ describe("SinglyLinkedList", () => {
             expect(SLL.getNodeBefore(deleteBeforeNode)).not.toMatchObject(
                 nodeBeingDeleted
             );
-            expect(SLL.find(nodeBeingDeleted.data)).toBeNull();
+            expect(
+                SLL.find((node) => node.data === nodeBeingDeleted.data)
+            ).toBeNull();
         });
     });
 
@@ -361,8 +371,12 @@ describe("SinglyLinkedList", () => {
             expect(SLL.getNodeBefore(SLL.tail)).not.toMatchObject(
                 deleteBeforeNodes[1]
             );
-            expect(SLL.find(nodesBeingDeleted[0].data)).toBeNull();
-            expect(SLL.find(nodesBeingDeleted[1].data)).toBeNull();
+            expect(
+                SLL.find((node) => node.data === nodesBeingDeleted[0].data)
+            ).toBeNull();
+            expect(
+                SLL.find((node) => node.data === nodesBeingDeleted[1].data)
+            ).toBeNull();
         });
     });
 
@@ -382,7 +396,9 @@ describe("SinglyLinkedList", () => {
         it("should delete the node after the given node", () => {
             SLL.deleteAfter(deleteAfterNode);
             expect(deleteAfterNode.next).toBeNull();
-            expect(SLL.find(nodeBeingDeleted.data)).toBeNull();
+            expect(
+                SLL.find((node) => node.data === nodeBeingDeleted.data)
+            ).toBeNull();
         });
         it("should set the tail as the node before the deleted node", () => {
             expect(SLL.tail).toBeInstanceOf(SingleNode);
@@ -412,8 +428,12 @@ describe("SinglyLinkedList", () => {
                 nodesBeingDeleted[0]
             );
             expect(deleteAfterNodes[1].next).toBeNull();
-            expect(SLL.find(nodesBeingDeleted[0].data)).toBeNull();
-            expect(SLL.find(nodesBeingDeleted[1].data)).toBeNull();
+            expect(
+                SLL.find((node) => node.data === nodesBeingDeleted[0].data)
+            ).toBeNull();
+            expect(
+                SLL.find((node) => node.data === nodesBeingDeleted[1].data)
+            ).toBeNull();
         });
     });
 
@@ -441,12 +461,18 @@ describe("SinglyLinkedList", () => {
 
     describe("find", () => {
         it("should return null if no node is found", () => {
-            const findNode = SLL.find("this is a non existent node");
+            const findNode = SLL.find(
+                (node) => node.data === "this is a non existent node"
+            );
             expect(findNode).toBeNull();
         });
-        it("should respond with the node with the data provided", () => {
-            const findHeadNode = SLL.find(SLL.head.data);
-            const findTailNode = SLL.find(SLL.tail.data);
+        it("should respond with the node if the callback is truthy", () => {
+            const findHeadNode = SLL.find(
+                (node) => node.data === SLL.head.data
+            );
+            const findTailNode = SLL.find(
+                (node) => node.data === SLL.tail.data
+            );
             expect(findHeadNode).toMatchObject(SLL.head);
             expect(findTailNode).toMatchObject(SLL.tail);
         });

@@ -271,29 +271,20 @@ module.exports = class SinglyLinkedList {
     }
 
     /**
-     * Find a node based on the data
-     * @param {*} data
+     * Find a node based on the callbackFn
+     * @param {function} callbackFn
      * @return {SingleNode}
      */
-    find(data) {
-        // Convert the data into a node
-        const node = new SingleNode(data);
-        let focusedNode = this._head;
-        while (focusedNode !== null) {
-            /**
-             * If both data properties match
-             * Doing this will ensure checking the next node instances succeeds
-             * Essentially skipping the process
-             */
-            node._next = focusedNode._next;
-            // Compare the focusedNode to the node
-            if (SingleNode.compareInstance(node, focusedNode))
-                return focusedNode;
-
-            // Update the focusedNode
-            focusedNode = focusedNode.next;
-        }
-        return null;
+    find(callbackFn) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        let foundNode = null;
+        this.forEach((node) => {
+            if (callbackFn(node) === true && foundNode === null) {
+                foundNode = node;
+            }
+        });
+        return foundNode;
     }
 
     /**
