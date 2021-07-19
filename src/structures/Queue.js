@@ -22,7 +22,7 @@ module.exports = class Queue {
      * @param {*} value
      */
     enqueue(value) {
-        this.elements.append(new SingleNode(node.data));
+        this.elements.append(new SingleNode(value));
     }
 
     /**
