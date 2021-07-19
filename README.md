@@ -14,10 +14,27 @@ This project is currently under-development.
 -   SinglyLinkedList uses SingleNode to create a linked list
 -   DoublyLinkedList uses DoubleNode to create a linked list
 
-**3. Binary Tree**
+**3. Queues**
 
-**4. Queues**
+**4. Stacks**
 
-**5. Stacks**
+**5. Hash Maps**
 
-**6. Sorting Algorithms**
+**6. Binary Tree**
+
+**7. Heaps**
+
+**8. Graphs**
+
+**9. Algorithms**
+
+-   Recursion
+-   Asymptotic Notation
+-   Bubble Sort
+-   Merge Sort
+-   Quicksort
+
+**10. Search and Graph Search Algorithms**
+
+-   Binary Search and Search Trees
+-   Graph Traversals
