@@ -16,7 +16,15 @@ This project is currently under-development.
 
 **3. Queues**
 
+-   Uses SinglyLinkedList to hold a queue of elements
+-   Enqueue to the back of the queue
+-   Dequeue from the front of the queue
+
 **4. Stacks**
+
+-   Uses SinglyLinkedList to hold a stack of elements
+-   Push to the front of the stack
+-   Pop from the front of the stack
 
 **5. Hash Maps**
 
