@@ -18,7 +18,7 @@ module.exports = class Queue {
     }
 
     /**
-     * Enqueue the specified node
+     * Enqueue the specified value
      * @param {*} value
      */
     enqueue(value) {
@@ -26,7 +26,7 @@ module.exports = class Queue {
     }
 
     /**
-     * Remove the front node
+     * Remove the front value
      */
     dequeue() {
         if (this.isEmpty()) return null;
