@@ -117,7 +117,7 @@ module.exports = class HashMap {
         const bucket = this.buckets[hash];
         const node = bucket.find((focusedNode) => focusedNode.data.key === key);
         if (node) {
-            bucket.remove(node);
+            bucket.delete(node);
         }
     }
 };
