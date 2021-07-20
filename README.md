@@ -28,6 +28,9 @@ This project is currently under-development.
 
 **5. Hash Maps**
 
+-   Uses SinglyLinkedList as buckets that hold data
+-   The amount of buckets is relative to the size specified (default is 32)
+
 **6. Binary Tree**
 
 **7. Heaps**
