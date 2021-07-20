@@ -46,6 +46,15 @@ module.exports = class BinaryTree {
      * @param {TreeNode} node
      */
     delete(node) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0)
+                throw new TypeError("node can not be an empty array");
+            for (const nodeItem of node) {
+                this.delete(nodeItem);
+            }
+            return;
+        }
         const deleteRecursive = (focusedNode) => {
             if (!(focusedNode instanceof TreeNode)) return null;
             // Find the specified node
