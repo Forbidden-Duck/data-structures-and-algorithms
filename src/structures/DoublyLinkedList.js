@@ -223,22 +223,20 @@ module.exports = class DoublyLinkedList {
     }
 
     /**
-     * Find a node based on the specified data
-     * @param {*} data
+     * Find a node based on the callbackFn
+     * @param {function} callbackFn
      * @returns {DoubleNode}
      */
-    find(data) {
-        const node = new DoubleNode(data);
-        let focusedNode = this.head;
-        while (focusedNode !== null) {
-            // Pretend the data is a node in the list
-            node._next = focusedNode.next;
-            node._previous = focusedNode.previous;
-            if (DoubleNode.compareInstance(node, focusedNode))
-                return focusedNode;
-            focusedNode = focusedNode.next;
-        }
-        return null;
+    find(callbackFn) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        let node = null;
+        this.forEach((focusedNode) => {
+            if (callbackFn(focusedNode) && node === null) {
+                node = focusedNode;
+            }
+        });
+        return node;
     }
 
     /**
