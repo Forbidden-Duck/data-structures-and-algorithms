@@ -40,4 +40,49 @@ module.exports = class BinaryTree {
             throw new TypeError("node much be an instance of TreeNode");
         return (this._root = insertRecursive(this.root));
     }
+
+    /**
+     * Delete the node from the tree
+     * @param {TreeNode} node
+     */
+    delete(node) {
+        const deleteRecursive = (focusedNode) => {
+            if (!(focusedNode instanceof TreeNode)) return null;
+            // Find the specified node
+            if (node.key < focusedNode.key) {
+                focusedNode._left = deleteRecursive(focusedNode.left);
+            } else if (node.key > focusedNode.key) {
+                focusedNode._right = deleteRecursive(focusedNode.right);
+            } else {
+                // Focused is the node to delete
+                /**
+                 * If no children are left, return null
+                 * There is no need to add a statement as checking
+                 * the left child and return the right, will return null anyway
+                 */
+                if (!(focusedNode._left instanceof TreeNode))
+                    return focusedNode._right;
+                if (!(focusNode._right instanceof TreeNode))
+                    return focusedNode._left;
+                const minRight = this.min(focusedNode.right);
+                focusedNode = Object.assign(focusedNode, {
+                    key: minRight.key,
+                    value: minRight.value,
+                });
+                focusedNode._right = this.deleteRecursive(focusedNode.right);
+            }
+            return focusedNode;
+        };
+        this._root = deleteRecursive(this.root);
+    }
+
+    /**
+     * Find the smallest key in the tree
+     * @returns {TreeNode}
+     */
+    min(node = this.root) {
+        if (!(node instanceof TreeNode)) return null;
+        if (node.left instanceof TreeNode) return min(node.left);
+        return node;
+    }
 };
