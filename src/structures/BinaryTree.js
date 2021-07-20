@@ -86,6 +86,21 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Clear the tree
+     */
+    clear() {
+        // Recursively unlink every node
+        // Should remove the risk of a potential memory leak (unlikely either way)
+        const clearRecursive = (focusedNode) => {
+            this.delete([focusedNode, focusedNode.left, focusedNode.right]);
+            if (this.root instanceof TreeNode) {
+                clearRecursive(this.root);
+            }
+        };
+        clearRecursive(this.root);
+    }
+
+    /**
      * Find the smallest key in the tree
      * @returns {TreeNode}
      */
