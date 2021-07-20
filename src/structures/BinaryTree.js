@@ -18,6 +18,15 @@ module.exports = class BinaryTree {
      * @returns {TreeNode}
      */
     insert(node) {
+        // Handle an array of nodes
+        if (Array.isArray(node)) {
+            if (node.length <= 0)
+                throw new TypeEror("node can not be an empty array");
+            for (const nodeItem of node) {
+                this.insert(nodeItem);
+            }
+            return node[0];
+        }
         const insertRecursive = (focusedNode) => {
             if (!(focusedNode instanceof TreeNode)) return node;
             if (node.key < focusedNode.key) {
