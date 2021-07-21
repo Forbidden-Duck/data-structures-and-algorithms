@@ -100,7 +100,7 @@ module.exports = class BinaryTree {
         // Should remove the risk of a potential memory leak (unlikely either way)
         this.forEach((focusedNode) => {
             this.delete(focusedNode);
-        })
+        });
     }
 
     /**
