@@ -101,6 +101,38 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Loops through the tree prioritising the left side
+     * Returning a node in the callbackFn will restart the loop at that node
+     * @param {function} callbackFn (value as DoubleNode, this)
+     * @param {*} thisArg If provided it will be used as this for each invocation of the callback
+     */
+    forEach(callbackFn, thisArg) {
+        const forEachRecursive = (focusedNode) => {
+            if (!(focusedNode instanceof TreeNode)) return;
+            const forEachNode = callbackFn(focusedNode, this);
+
+            // If the callback sends back a node, restart recursion
+            if (forEachNode instanceof TreeNode) {
+                forEachRecursive(forEachNode);
+                return null; // null will stop the previous recursions from happening
+            }
+
+            if (focusedNode.left instanceof TreeNode) {
+                const forEachLeft = forEachRecursive(focusedNode.left);
+                if (forEachLeft === null) return null; // If null, stop recursion
+            }
+            if (focusedNode.right instanceof TreeNode) {
+                const forEachRight = forEachRecursive(focusedNode.right);
+                if (forEachRight === null) return null;
+            }
+        };
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        if (thisArg) callbackFn = callbackFn.bind(thisArg);
+        forEachRecursive(this.root);
+    }
+
+    /**
      * Find the smallest key in the tree
      * @returns {TreeNode}
      */
