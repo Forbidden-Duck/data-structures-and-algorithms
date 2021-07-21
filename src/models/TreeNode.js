@@ -1,4 +1,9 @@
 module.exports = class TreeNode {
+    /**
+     *
+     * @param {number} key
+     * @param {*} data
+     */
     constructor(key, data) {
         /**
          * @private
