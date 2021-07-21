@@ -29,22 +29,22 @@ module.exports = class BinaryTree {
         }
         if (!(node instanceof TreeNode))
             throw new TypeError("node much be an instance of TreeNode");
-        if (!(this.root instanceof TreeNode)) return (this.root = node);
+        if (!(this.root instanceof TreeNode)) return (this._root = node);
         this.forEach((focusedNode) => {
             if (node.key < focusedNode.key) {
                 if (focusedNode.left instanceof TreeNode) {
                     return focusedNode.left;
                 }
-                focusedNode.left = node;
-                node.parent = focusedNode;
+                focusedNode._left = node;
+                node._parent = focusedNode;
                 return null;
             }
             if (node > focusedNode.key) {
                 if (focusedNode.right instanceof TreeNode) {
                     return focusNode.right;
                 }
-                focusedNode.right = node;
-                node.parent = focusedNode;
+                focusedNode._right = node;
+                node._parent = focusedNode;
                 return null;
             }
             focusedNode.data = node.data;
@@ -90,7 +90,7 @@ module.exports = class BinaryTree {
             // Node has only a right child
             if (!(focusedNode.left instanceof TreeNode)) {
                 if (nodeIsRoot) {
-                    this.root = node.right;
+                    this._root = node.right;
                 } else {
                     if (
                         TreeNode.compareInstance(
@@ -98,27 +98,27 @@ module.exports = class BinaryTree {
                             focusedNode
                         )
                     ) {
-                        focusedNode.parent.left = focusedNode.right;
+                        focusedNode.parent._left = focusedNode.right;
                     } else if (
                         TreeNode.compareInstance(
                             focusedNode.parent.right,
                             focusedNode
                         )
                     ) {
-                        focusedNode.parent.right = focusedNode.right;
+                        focusedNode.parent._right = focusedNode.right;
                     }
                     if (focusedNode.right instanceof TreeNode) {
                         // Since no children can parsed here
-                        focusedNode.right.parent = focusedNode.parent;
+                        focusedNode.right._parent = focusedNode.parent;
                     }
-                    focusedNode.parent = null;
+                    focusedNode._parent = null;
                 }
                 return null;
             }
             // Node has only a left child
             if (!(focusedNode.right instanceof TreeNode)) {
                 if (nodeIsRoot) {
-                    this.root = node.left;
+                    this._root = node.left;
                 } else {
                     if (
                         TreeNode.compareInstance(
@@ -126,17 +126,17 @@ module.exports = class BinaryTree {
                             focusedNode
                         )
                     ) {
-                        focusedNode.parent.left = focusedNode.left;
+                        focusedNode.parent._left = focusedNode.left;
                     } else if (
                         TreeNode.compareInstance(
                             focusedNode.parent.right,
                             focusedNode
                         )
                     ) {
-                        focusedNode.parent.right = focusedNode.left;
+                        focusedNode.parent._right = focusedNode.left;
                     }
-                    focusedNode.left.parent = focusedNode.parent;
-                    focusedNode.parent = null;
+                    focusedNode.left._parent = focusedNode.parent;
+                    focusedNode._parent = null;
                 }
                 return null;
             }
