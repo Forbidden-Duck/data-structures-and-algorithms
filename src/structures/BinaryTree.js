@@ -67,34 +67,87 @@ module.exports = class BinaryTree {
             }
             return;
         }
-        const deleteRecursive = (focusedNode) => {
+        if (!(node instanceof TreeNode))
+            throw new TypeError("node much be an instance of TreeNode");
+        if (!(this.root instanceof TreeNode))
+            throw new TypeError("There is no nodes in the tree");
+        this.forEach((focusedNode) => {
             if (!(focusedNode instanceof TreeNode)) return null;
             // Find the specified node
             if (node.key < focusedNode.key) {
-                focusedNode._left = deleteRecursive(focusedNode.left);
-            } else if (node.key > focusedNode.key) {
-                focusedNode._right = deleteRecursive(focusedNode.right);
-            } else {
-                // Focused is the node to delete
-                /**
-                 * If no children are left, return null
-                 * There is no need to add a statement as checking
-                 * the left child and return the right, will return null anyway
-                 */
-                if (!(focusedNode._left instanceof TreeNode))
-                    return focusedNode._right;
-                if (!(focusNode._right instanceof TreeNode))
-                    return focusedNode._left;
-                const minRight = this.min(focusedNode.right);
-                focusedNode = Object.assign(focusedNode, {
-                    key: minRight.key,
-                    value: minRight.value,
-                });
-                focusedNode._right = this.deleteRecursive(focusedNode.right);
+                return focusedNode.left;
             }
-            return focusedNode;
-        };
-        this._root = deleteRecursive(this.root);
+            if (node.key > focusedNode.key) {
+                return focusedNode.right;
+            }
+            // Focused node is the node to remove
+            const nodeIsRoot = TreeNode.compareInstance(focusedNode, this.root);
+            /**
+             * If no children are left, return null
+             * There is no need to add a statement as checking
+             * the left child and return the right, will return null anyway
+             */
+            // Node has only a right child
+            if (!(focusedNode.left instanceof TreeNode)) {
+                if (nodeIsRoot) {
+                    this.root = node.right;
+                } else {
+                    if (
+                        TreeNode.compareInstance(
+                            focusedNode.parent.left,
+                            focusedNode
+                        )
+                    ) {
+                        focusedNode.parent.left = focusedNode.right;
+                    } else if (
+                        TreeNode.compareInstance(
+                            focusedNode.parent.right,
+                            focusedNode
+                        )
+                    ) {
+                        focusedNode.parent.right = focusedNode.right;
+                    }
+                    if (focusedNode.right instanceof TreeNode) {
+                        // Since no children can parsed here
+                        focusedNode.right.parent = focusedNode.parent;
+                    }
+                    focusedNode.parent = null;
+                }
+                return null;
+            }
+            // Node has only a left child
+            if (!(focusedNode.right instanceof TreeNode)) {
+                if (nodeIsRoot) {
+                    this.root = node.left;
+                } else {
+                    if (
+                        TreeNode.compareInstance(
+                            focusedNode.parent.left,
+                            focusedNode
+                        )
+                    ) {
+                        focusedNode.parent.left = focusedNode.left;
+                    } else if (
+                        TreeNode.compareInstance(
+                            focusedNode.parent.right,
+                            focusedNode
+                        )
+                    ) {
+                        focusedNode.parent.right = focusedNode.left;
+                    }
+                    focusedNode.left.parent = focusedNode.parent;
+                    focusedNode.parent = null;
+                }
+                return null;
+            }
+            // Node has both children
+            const minRight = this.min(focusedNode.right);
+            focusedNode = Object.assign(focusedNode, {
+                key: minRight.key,
+                data: minRight.data,
+            });
+            return focusedNode.right;
+        });
     }
 
     /**
@@ -118,7 +171,7 @@ module.exports = class BinaryTree {
      * @param {function} callbackFn (value as DoubleNode, this)
      * @param {*} thisArg If provided it will be used as this for each invocation of the callback
      */
-    forEach(callbackFn, thisArg) {
+    forEach(callbackFn, startNode = this.root, thisArg) {
         const forEachRecursive = (focusedNode) => {
             if (!(focusedNode instanceof TreeNode)) return;
             const forEachNode = callbackFn(focusedNode, this);
@@ -141,7 +194,7 @@ module.exports = class BinaryTree {
         if (!(callbackFn instanceof Function))
             throw new TypeError("callbackFn must be a function");
         if (thisArg) callbackFn = callbackFn.bind(thisArg);
-        forEachRecursive(this.root);
+        forEachRecursive(startNode);
     }
 
     /**
