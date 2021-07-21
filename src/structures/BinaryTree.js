@@ -101,6 +101,20 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Get the specified key
+     * @param {number} key
+     * @return {TreeNode}
+     */
+    get(key) {
+        if (isNaN(parseInt(key))) throw new TypeError("key must be a number");
+        let foundNode = null;
+        this.forEach((focusedNode) => {
+            focusedNode.key === key ? foundNode = focusedNode : return null;
+        });
+        return foundNode;
+    }
+
+    /**
      * Find the smallest key in the tree
      * @returns {TreeNode}
      */
