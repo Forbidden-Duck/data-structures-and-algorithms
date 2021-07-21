@@ -101,6 +101,16 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Find the smallest key in the tree
+     * @returns {TreeNode}
+     */
+    min(node = this.root) {
+        if (!(node instanceof TreeNode)) return null;
+        if (node.left instanceof TreeNode) return min(node.left);
+        return node;
+    }
+
+    /**
      * Loops through the tree prioritising the left side
      * Returning a node in the callbackFn will restart the loop at that node
      * @param {function} callbackFn (value as DoubleNode, this)
@@ -130,15 +140,5 @@ module.exports = class BinaryTree {
             throw new TypeError("callbackFn must be a function");
         if (thisArg) callbackFn = callbackFn.bind(thisArg);
         forEachRecursive(startNode);
-    }
-
-    /**
-     * Find the smallest key in the tree
-     * @returns {TreeNode}
-     */
-    min(node = this.root) {
-        if (!(node instanceof TreeNode)) return null;
-        if (node.left instanceof TreeNode) return min(node.left);
-        return node;
     }
 };
