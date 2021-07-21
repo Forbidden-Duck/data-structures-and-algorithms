@@ -27,18 +27,25 @@ module.exports = class BinaryTree {
             }
             return node[0];
         }
-        const insertRecursive = (focusedNode) => {
-            if (!(focusedNode instanceof TreeNode)) return node;
-            if (node.key < focusedNode.key) {
-                focusedNode._left = insertRecursive(focusedNode.left);
-            } else if (node.key > focusedNode.key) {
-                focusedNode._right = insertRecursive(focusedNode.right);
-            }
-            return focusedNode;
-        };
         if (!(node instanceof TreeNode))
             throw new TypeError("node much be an instance of TreeNode");
-        return (this._root = insertRecursive(this.root));
+        this.forEach((focusedNode) => {
+            if (node.key < focusedNode.key) {
+                if (focusedNode.left instanceof TreeNode) return focusedNode.left;
+                focusedNode.left = node;
+                node.parent = focusedNode;
+                return null;
+            }
+            if (node.key > focusedNode.key){
+                if (focusedNode.right instanceof TreeNode) return focusedNode.right;
+                focusedNode.right = node;
+                node.parent = focusedNode;
+                return; null;
+            };
+            focusedNode.data = node.data;
+            return null;
+        });
+        return node;
     }
 
     /**
