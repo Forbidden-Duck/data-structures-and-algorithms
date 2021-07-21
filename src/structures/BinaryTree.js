@@ -27,30 +27,18 @@ module.exports = class BinaryTree {
             }
             return node[0];
         }
+        const insertRecursive = (focusedNode) => {
+            if (!(focusedNode instanceof TreeNode)) return node;
+            if (node.key < focusedNode.key) {
+                focusedNode._left = insertRecursive(focusedNode.left);
+            } else if (node.key > focusedNode.key) {
+                focusedNode._right = insertRecursive(focusedNode.right);
+            }
+            return focusedNode;
+        };
         if (!(node instanceof TreeNode))
             throw new TypeError("node much be an instance of TreeNode");
-        if (!(this.root instanceof TreeNode)) return (this._root = node);
-        this.forEach((focusedNode) => {
-            if (node.key < focusedNode.key) {
-                if (focusedNode.left instanceof TreeNode) {
-                    return focusedNode.left;
-                }
-                focusedNode._left = node;
-                node._parent = focusedNode;
-                return null;
-            }
-            if (node > focusedNode.key) {
-                if (focusedNode.right instanceof TreeNode) {
-                    return focusNode.right;
-                }
-                focusedNode._right = node;
-                node._parent = focusedNode;
-                return null;
-            }
-            focusedNode.data = node.data;
-            return null;
-        });
-        return node;
+        return (this._root = insertRecursive(this.root));
     }
 
     /**
@@ -67,87 +55,34 @@ module.exports = class BinaryTree {
             }
             return;
         }
-        if (!(node instanceof TreeNode))
-            throw new TypeError("node much be an instance of TreeNode");
-        if (!(this.root instanceof TreeNode))
-            throw new TypeError("There is no nodes in the tree");
-        this.forEach((focusedNode) => {
+        const deleteRecursive = (focusedNode) => {
             if (!(focusedNode instanceof TreeNode)) return null;
             // Find the specified node
             if (node.key < focusedNode.key) {
-                return focusedNode.left;
+                focusedNode._left = deleteRecursive(focusedNode.left);
+            } else if (node.key > focusedNode.key) {
+                focusedNode._right = deleteRecursive(focusedNode.right);
+            } else {
+                // Focused is the node to delete
+                /**
+                 * If no children are left, return null
+                 * There is no need to add a statement as checking
+                 * the left child and return the right, will return null anyway
+                 */
+                if (!(focusedNode._left instanceof TreeNode))
+                    return focusedNode._right;
+                if (!(focusNode._right instanceof TreeNode))
+                    return focusedNode._left;
+                const minRight = this.min(focusedNode.right);
+                focusedNode = Object.assign(focusedNode, {
+                    key: minRight.key,
+                    value: minRight.value,
+                });
+                focusedNode._right = this.deleteRecursive(focusedNode.right);
             }
-            if (node.key > focusedNode.key) {
-                return focusedNode.right;
-            }
-            // Focused node is the node to remove
-            const nodeIsRoot = TreeNode.compareInstance(focusedNode, this.root);
-            /**
-             * If no children are left, return null
-             * There is no need to add a statement as checking
-             * the left child and return the right, will return null anyway
-             */
-            // Node has only a right child
-            if (!(focusedNode.left instanceof TreeNode)) {
-                if (nodeIsRoot) {
-                    this._root = node.right;
-                } else {
-                    if (
-                        TreeNode.compareInstance(
-                            focusedNode.parent.left,
-                            focusedNode
-                        )
-                    ) {
-                        focusedNode.parent._left = focusedNode.right;
-                    } else if (
-                        TreeNode.compareInstance(
-                            focusedNode.parent.right,
-                            focusedNode
-                        )
-                    ) {
-                        focusedNode.parent._right = focusedNode.right;
-                    }
-                    if (focusedNode.right instanceof TreeNode) {
-                        // Since no children can parsed here
-                        focusedNode.right._parent = focusedNode.parent;
-                    }
-                    focusedNode._parent = null;
-                }
-                return null;
-            }
-            // Node has only a left child
-            if (!(focusedNode.right instanceof TreeNode)) {
-                if (nodeIsRoot) {
-                    this._root = node.left;
-                } else {
-                    if (
-                        TreeNode.compareInstance(
-                            focusedNode.parent.left,
-                            focusedNode
-                        )
-                    ) {
-                        focusedNode.parent._left = focusedNode.left;
-                    } else if (
-                        TreeNode.compareInstance(
-                            focusedNode.parent.right,
-                            focusedNode
-                        )
-                    ) {
-                        focusedNode.parent._right = focusedNode.left;
-                    }
-                    focusedNode.left._parent = focusedNode.parent;
-                    focusedNode._parent = null;
-                }
-                return null;
-            }
-            // Node has both children
-            const minRight = this.min(focusedNode.right);
-            focusedNode = Object.assign(focusedNode, {
-                key: minRight.key,
-                data: minRight.data,
-            });
-            return focusedNode.right;
-        });
+            return focusedNode;
+        };
+        this._root = deleteRecursive(this.root);
     }
 
     /**
