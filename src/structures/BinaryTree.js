@@ -184,6 +184,26 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Find the node with a key more than the specified key
+     * @param {number} key
+     * @returns {TreeNode}
+     */
+    upperBound(key) {
+        key = parseInt(key);
+        if (isNaN(key)) throw new TypeError("key must be a number");
+        if (!(node instanceof TreeNode)) return null;
+        let largestNode = null;
+        this.forEach((node) => {
+            if (
+                node.key > key &&
+                (largestNode === null || node.key < largestNode.key)
+            )
+                largestNode = node;
+        });
+        return largestNode;
+    }
+
+    /**
      * Loops through the tree prioritising the left side
      * Returning a node in the callbackFn will restart the loop at that node
      * @param {function} callbackFn (value as DoubleNode, this)
