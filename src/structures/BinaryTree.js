@@ -269,4 +269,19 @@ module.exports = class BinaryTree {
         toPreOrderRecursive(this.root);
         return array;
     }
+
+    /**
+     * Traverse the tree in in-order
+     * @returns {TreeNode[]}
+     */
+    toInOrder() {
+        const array = [];
+        const toInOrderRecursive = (focusedNode) => {
+            toInOrderRecursive(focusedNode.left);
+            array.push(focusedNode);
+            toInOrderRecursive(focusedNode.right);
+        };
+        toInOrderRecursive(this.root);
+        return array;
+    }
 };
