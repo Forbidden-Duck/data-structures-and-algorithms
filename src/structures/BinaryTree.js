@@ -31,17 +31,20 @@ module.exports = class BinaryTree {
             throw new TypeError("node much be an instance of TreeNode");
         this.forEach((focusedNode) => {
             if (node.key < focusedNode.key) {
-                if (focusedNode.left instanceof TreeNode) return focusedNode.left;
+                if (focusedNode.left instanceof TreeNode)
+                    return focusedNode.left;
                 focusedNode.left = node;
                 node.parent = focusedNode;
                 return null;
             }
-            if (node.key > focusedNode.key){
-                if (focusedNode.right instanceof TreeNode) return focusedNode.right;
+            if (node.key > focusedNode.key) {
+                if (focusedNode.right instanceof TreeNode)
+                    return focusedNode.right;
                 focusedNode.right = node;
                 node.parent = focusedNode;
-                return; null;
-            };
+                return;
+                null;
+            }
             focusedNode.data = node.data;
             return null;
         });
@@ -112,7 +115,10 @@ module.exports = class BinaryTree {
         if (isNaN(parseInt(key))) throw new TypeError("key must be a number");
         let foundNode = null;
         this.forEach((focusedNode) => {
-            focusedNode.key === key ? foundNode = focusedNode : return null;
+            if (focusedNode.key === key) {
+                foundNode = focusedNode;
+                return null;
+            }
         });
         return foundNode;
     }
