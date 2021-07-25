@@ -244,4 +244,14 @@ module.exports = class BinaryTree {
         this.forEach((node) => tree.insert(new Tree(node.data)));
         return tree;
     }
+
+    /**
+     * Return the size of the tree
+     * @returns {number}
+     */
+    get size() {
+        let size = 0;
+        this.forEach((node) => size++);
+        return size;
+    }
 };
