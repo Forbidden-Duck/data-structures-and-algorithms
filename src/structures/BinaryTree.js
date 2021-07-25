@@ -164,6 +164,27 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Find the node with the a key less than the specified key
+     * @param {number} key
+     * @returns {TreeNode}
+     */
+    lowerBound(key) {
+        key = parseInt(key);
+        if (isNaN(key)) throw new TypeError("key must be a number");
+        if (!(node instanceof TreeNode)) return null;
+        let smallestNode = null;
+        this.forEach((node) => {
+            if (
+                node.key < key &&
+                (smallestNode === null || node.key > smallestNode.key)
+            ) {
+                smallestNode = node;
+            }
+        });
+        return smallestNode;
+    }
+
+    /**
      * Loops through the tree prioritising the left side
      * Returning a node in the callbackFn will restart the loop at that node
      * @param {function} callbackFn (value as DoubleNode, this)
