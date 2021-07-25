@@ -44,9 +44,35 @@ module.exports = class TreeNode {
      * Compare two instances of TreeNode
      * @param {TreeNode} a
      * @param {TreeNode} b
-     * @param {"left" | "right" | "parent"} skip
      */
-    static compareInstance(a, b, skip) {
-        throw new Error("Not implemented yet");
+    static compareInstance(a, b) {
+        if (!(a instanceof DoubleNode) || !(b instanceof DoubleNode))
+            return null;
+        if (typeof a.data !== typeof b.data) return false;
+
+        switch (a.data) {
+            case "object": {
+                for (const [key, value] of Object.entries(a.data)) {
+                    if (a.data[key] !== b.data[key]) return false;
+                }
+                break;
+            }
+            case "function": {
+                if (a.data.toString() !== b.data.toString()) return false;
+                break;
+            }
+            default: {
+                if (a.data !== b.data) return false;
+                break;
+            }
+        }
+
+        // Check every instance of left and right nodes are truthy
+        if (a.left !== null && b.left !== null) {
+            if (!TreeNode.compareInstance(a.left, b.left)) return false;
+        }
+        if (a.right !== null && b.right !== null) {
+            if (!TreeNode.compareInstance(a.right, b.right)) return false;
+        }
     }
 };
