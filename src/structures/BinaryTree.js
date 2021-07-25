@@ -124,6 +124,26 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Find a node based on the callbackFn
+     * @param {function} callbackFn
+     * @returns {TreeNode}
+     */
+    find(callbackFn) {
+        if (!(callbackFn instanceof Function))
+            throw new TypeError("callbackFn must be a function");
+        let node = null;
+        this.forEach((focusedNode) => {
+            const cbValue = callbackFn(focusedNode);
+            if (cbValue && node === null) {
+                node = focusedNode;
+                return null;
+            }
+            return cbValue(node);
+        });
+        return node;
+    }
+
+    /**
      * Find the smallest key in the tree
      * @returns {TreeNode}
      */
