@@ -154,6 +154,16 @@ module.exports = class BinaryTree {
     }
 
     /**
+     * Find the largest key in the tree
+     * @returns {TreeNode}
+     */
+    max(node = this.root) {
+        if (!(node instanceof TreeNode)) return null;
+        if (node.right instanceof TreeNode) return max(node.right);
+        return node;
+    }
+
+    /**
      * Loops through the tree prioritising the left side
      * Returning a node in the callbackFn will restart the loop at that node
      * @param {function} callbackFn (value as DoubleNode, this)
