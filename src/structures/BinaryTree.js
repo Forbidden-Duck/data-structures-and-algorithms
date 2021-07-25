@@ -234,4 +234,14 @@ module.exports = class BinaryTree {
         if (thisArg) callbackFn = callbackFn.bind(thisArg);
         forEachRecursive(startNode);
     }
+
+    /**
+     * Immutably clone the tree and it's nodes
+     * @returns {TreeNode}
+     */
+    clone() {
+        const tree = new BinaryTree();
+        this.forEach((node) => tree.insert(new Tree(node.data)));
+        return tree;
+    }
 };
