@@ -177,9 +177,8 @@ module.exports = class BinaryTree {
             if (
                 node.key < key &&
                 (smallestNode === null || node.key > smallestNode.key)
-            ) {
+            )
                 smallestNode = node;
-            }
         });
         return smallestNode;
     }
