@@ -156,4 +156,11 @@ describe("BinaryTree", () => {
             expect(BT.min()).toMatchObject(minNode);
         });
     });
+
+    describe("max", () => {
+        it("should respond with the node with the largest key", () => {
+            const maxNode = BT.get(834);
+            expect(BT.max()).toMatchObject(maxNode);
+        });
+    });
 });
