@@ -73,5 +73,6 @@ module.exports = class TreeNode {
         if (a.right !== null && b.right !== null) {
             if (!TreeNode.compareInstance(a.right, b.right)) return false;
         }
+        return true;
     }
 };
