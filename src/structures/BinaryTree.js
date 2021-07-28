@@ -152,7 +152,7 @@ module.exports = class BinaryTree {
      */
     min(node = this.root) {
         if (!(node instanceof TreeNode)) return null;
-        if (node.left instanceof TreeNode) return min(node.left);
+        if (node.left instanceof TreeNode) return this.min(node.left);
         return node;
     }
 
@@ -162,7 +162,7 @@ module.exports = class BinaryTree {
      */
     max(node = this.root) {
         if (!(node instanceof TreeNode)) return null;
-        if (node.right instanceof TreeNode) return max(node.right);
+        if (node.right instanceof TreeNode) return this.max(node.right);
         return node;
     }
 
