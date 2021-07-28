@@ -67,4 +67,23 @@ describe("BinaryTree", () => {
             expect([find804, find638, find744]).toMatchObject(insertNodes);
         });
     });
+
+    describe("delete", () => {
+        let deleteNode;
+
+        beforeAll(() => {
+            // Make deleteNode not mutate the BinaryTree root
+            deleteNode = new TreeNode(BT.root.key, BT.root.data);
+        });
+
+        it("should throw a TypeError if a non TreeNode is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => BT.delete(fakeNode)).toThrow(TypeError);
+        });
+        it("should delete the node from the tree", () => {
+            BT.delete(deleteNode);
+            expect(BT.root).not.toMatchObject(deleteNode);
+            expect(BT.find((node) => node.key === deleteNode.key)).toBeNull();
+        });
+    });
 });
