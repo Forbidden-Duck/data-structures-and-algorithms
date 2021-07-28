@@ -48,7 +48,7 @@ describe("BinaryTree", () => {
         });
     });
 
-    describe("prepend array", () => {
+    describe("insert array", () => {
         const insertNodes = [
             new TreeNode(804, 804),
             new TreeNode(638, 638),
