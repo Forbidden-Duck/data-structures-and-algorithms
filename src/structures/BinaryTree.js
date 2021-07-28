@@ -91,7 +91,7 @@ module.exports = class BinaryTree {
                     _key: minRight.key,
                     data: minRight.data,
                 });
-                focusedNode._right = this.deleteRecursive(focusedNode.right);
+                focusedNode._right = deleteRecursive(focusedNode.right);
             }
             return focusedNode;
         };
