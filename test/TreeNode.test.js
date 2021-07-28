@@ -6,9 +6,14 @@ describe("TreeNode", () => {
             const node = new TreeNode();
             expect(node).toBeInstanceOf(TreeNode);
         });
+        it("should add key to it's properties", () => {
+            const key = 1;
+            const node = new TreeNode(key, 2);
+            expect(node.key).toStrictEqual(key);
+        });
         it("should add data to it's properties", () => {
             const data = "my data";
-            const node = new TreeNode(data);
+            const node = new TreeNode(1, data);
             expect(node.data).toStrictEqual(data);
         });
         it("should set the left property as null", () => {
