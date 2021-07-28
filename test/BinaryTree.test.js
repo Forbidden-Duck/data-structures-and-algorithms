@@ -149,4 +149,11 @@ describe("BinaryTree", () => {
             expect(rootNode).toMatchObject(BT.root);
         });
     });
+
+    describe("min", () => {
+        it("should respond with the node with the smallest key", () => {
+            const minNode = BT.get(166);
+            expect(BT.min()).toMatchObject(minNode);
+        });
+    });
 });
