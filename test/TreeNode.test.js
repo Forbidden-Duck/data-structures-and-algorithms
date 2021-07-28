@@ -63,70 +63,70 @@ describe("TreeNode", () => {
             expect(TreeNode.compareInstance(node1, node2)).toBeNull();
         });
         it("should return true if two of the same instances are present", () => {
-            const node = new TreeNode(1);
+            const node = new TreeNode(1, 2);
             expect(TreeNode.compareInstance(node, node)).toBe(true);
         });
         it("should return true if two instances have the same data", () => {
-            const node1 = new TreeNode(1);
-            const node2 = new TreeNode(1);
+            const node1 = new TreeNode(1, 2);
+            const node2 = new TreeNode(1, 2);
             expect(TreeNode.compareInstance(node1, node2)).toBe(true);
         });
         it("should return false if two instances have different data", () => {
-            const node1 = new TreeNode(1);
-            const node2 = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node2 = new TreeNode(2, 3);
             expect(TreeNode.compareInstance(node1, node2)).toBe(false);
         });
         it("should return true if two instances have the same left and data", () => {
-            const node1 = new TreeNode(1);
-            const node1Left = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node1Left = new TreeNode(2, 3);
             node1._left = node1Left;
-            const node2 = new TreeNode(1);
-            const node2Left = new TreeNode(2);
+            const node2 = new TreeNode(1, 2);
+            const node2Left = new TreeNode(2, 3);
             node2._left = node2Left;
             expect(TreeNode.compareInstance(node1, node2)).toBe(true);
         });
         it("should return false if two instances have same left but different data", () => {
-            const node1 = new TreeNode(1);
-            const node1Left = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node1Left = new TreeNode(2, 3);
             node1._left = node1Left;
-            const node2 = new TreeNode(2);
-            const node2Left = new TreeNode(2);
+            const node2 = new TreeNode(2, 3);
+            const node2Left = new TreeNode(2, 3);
             node2._left = node2Left;
             expect(TreeNode.compareInstance(node1, node2)).toBe(false);
         });
         it("should return false if two instances have different left but same data", () => {
-            const node1 = new TreeNode(1);
-            const node1Left = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node1Left = new TreeNode(2, 3);
             node1._left = node1Left;
-            const node2 = new TreeNode(1);
-            const node2Left = new TreeNode(1);
+            const node2 = new TreeNode(1, 2);
+            const node2Left = new TreeNode(1, 2);
             node2._left = node2Left;
             expect(TreeNode.compareInstance(node1, node2)).toBe(false);
         });
         it("should return true if two instances have the same right and data", () => {
-            const node1 = new TreeNode(1);
-            const node1Right = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node1Right = new TreeNode(2, 3);
             node1._right = node1Right;
-            const node2 = new TreeNode(1);
-            const node2Right = new TreeNode(2);
+            const node2 = new TreeNode(1, 2);
+            const node2Right = new TreeNode(2, 3);
             node2._right = node2Right;
             expect(TreeNode.compareInstance(node1, node2)).toBe(true);
         });
         it("should return false if two instances have same right but different data", () => {
-            const node1 = new TreeNode(1);
-            const node1Right = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node1Right = new TreeNode(2, 3);
             node1._left = node1Right;
-            const node2 = new TreeNode(2);
-            const node2Right = new TreeNode(2);
+            const node2 = new TreeNode(2, 3);
+            const node2Right = new TreeNode(2, 3);
             node2._left = node2Right;
             expect(TreeNode.compareInstance(node1, node2)).toBe(false);
         });
         it("should return false if two instances have different right but same data", () => {
-            const node1 = new TreeNode(1);
-            const node1Right = new TreeNode(2);
+            const node1 = new TreeNode(1, 2);
+            const node1Right = new TreeNode(2, 3);
             node1._left = node1Right;
-            const node2 = new TreeNode(1);
-            const node2Right = new TreeNode(1);
+            const node2 = new TreeNode(1, 2);
+            const node2Right = new TreeNode(1, 2);
             node2._left = node2Right;
             expect(TreeNode.compareInstance(node1, node2)).toBe(false);
         });
