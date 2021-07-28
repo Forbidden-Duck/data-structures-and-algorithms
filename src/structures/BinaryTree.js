@@ -138,7 +138,7 @@ module.exports = class BinaryTree {
                 node = focusedNode;
                 return null;
             }
-            return cbValue(node);
+            return cbValue;
         });
         return node;
     }
