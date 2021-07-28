@@ -19,7 +19,6 @@ describe("BinaryTree", () => {
             const tree = new BinaryTree();
             const root = new TreeNode("root");
             tree._root = root;
-            expect(tree.root).toBeInstanceOf(TreeNode);
             expect(tree.root).toMatchObject(root);
         });
     });
