@@ -88,8 +88,8 @@ module.exports = class BinaryTree {
                     return focusedNode._left;
                 const minRight = this.min(focusedNode.right);
                 focusedNode = Object.assign(focusedNode, {
-                    key: minRight.key,
-                    value: minRight.value,
+                    key: minRight._key,
+                    data: minRight.data,
                 });
                 focusedNode._right = this.deleteRecursive(focusedNode.right);
             }
@@ -209,7 +209,7 @@ module.exports = class BinaryTree {
     /**
      * Loops through the tree prioritising the left side
      * Returning a node in the callbackFn will restart the loop at that node
-     * @param {function} callbackFn (value as DoubleNode, this)
+     * @param {function} callbackFn (value as TreeNode, this)
      * @param {*} thisArg If provided it will be used as this for each invocation of the callback
      */
     forEach(callbackFn, startNode = this.root, thisArg) {
