@@ -163,4 +163,11 @@ describe("BinaryTree", () => {
             expect(BT.max()).toMatchObject(maxNode);
         });
     });
+
+    describe("lowerBound", () => {
+        it("should respond with a key less than the specified key", () => {
+            const lessThanRoot = BT.lowerBound(BT.root.key);
+            expect(lessThanRoot).toMatchObject(BT.get(638));
+        });
+    });
 });
