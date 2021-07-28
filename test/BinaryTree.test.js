@@ -23,4 +23,33 @@ describe("BinaryTree", () => {
             expect(tree.root).toMatchObject(root);
         });
     });
+
+    describe("insert", () => {
+        const insertNodes = [
+            new TreeNode(642, 642),
+            new TreeNode(834, 834),
+            new TreeNode(166, 166),
+        ];
+
+        it("should throw a TypeError if a non TreeNode is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => BT.insert(fakeNode)).toThrow(TypeError);
+        });
+        it("should insert the TreeNodes into the tree", () => {
+            BT.insert(insertNodes[0]); // Testing inserting individual nodes
+            BT.insert(insertNodes[1]);
+            BT.insert(insertNodes[2]);
+            const find642 = BT.find((node) => node.key === 642);
+            const find834 = BT.find((node) => node.key === 834);
+            const find166 = BT.find((node) => node.key === 166);
+            expect([find642, find834, find166]).toMatchObject([
+                insertNodes[0],
+                insertNodes[1],
+                insertNodes[2],
+            ]);
+        });
+        it("should should set the root node as the first given node", () => {
+            expect(BT.root).toMatchObject(insertNodes[0]);
+        });
+    });
 });
