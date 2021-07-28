@@ -266,8 +266,10 @@ module.exports = class BinaryTree {
         const array = [];
         const toPreOrderRecursive = (focusedNode) => {
             array.push(focusedNode);
-            toPreOrderRecursive(focusedNode.left);
-            toPreOrderRecursive(focusedNode.right);
+            if (focusedNode.left instanceof TreeNode)
+                toPreOrderRecursive(focusedNode.left);
+            if (focusedNode.right instanceof TreeNode)
+                toPreOrderRecursive(focusedNode.right);
         };
         toPreOrderRecursive(this.root);
         return array;
@@ -280,9 +282,11 @@ module.exports = class BinaryTree {
     toInOrder() {
         const array = [];
         const toInOrderRecursive = (focusedNode) => {
-            toInOrderRecursive(focusedNode.left);
+            if (focusedNode.left instanceof TreeNode)
+                toInOrderRecursive(focusedNode.left);
             array.push(focusedNode);
-            toInOrderRecursive(focusedNode.right);
+            if (focusedNode.right instanceof TreeNode)
+                toInOrderRecursive(focusedNode.right);
         };
         toInOrderRecursive(this.root);
         return array;
@@ -295,8 +299,10 @@ module.exports = class BinaryTree {
     toPostOrder() {
         const array = [];
         const toPostOrderRecursive = (focusedNode) => {
-            toPostOrderRecursive(focusedNode.left);
-            toPostOrderRecursive(focusedNode.right);
+            if (focusedNode.left instanceof TreeNode)
+                toPostOrderRecursive(focusedNode.left);
+            if (focusedNode.right instanceof TreeNode)
+                toPostOrderRecursive(focusedNode.right);
             array.push(focusedNode);
         };
         toPostOrderRecursive(this.root);
