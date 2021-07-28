@@ -46,8 +46,7 @@ module.exports = class TreeNode {
      * @param {TreeNode} b
      */
     static compareInstance(a, b) {
-        if (!(a instanceof DoubleNode) || !(b instanceof DoubleNode))
-            return null;
+        if (!(a instanceof TreeNode) || !(b instanceof TreeNode)) return null;
         if (typeof a.data !== typeof b.data) return false;
 
         switch (a.data) {
