@@ -84,7 +84,7 @@ module.exports = class BinaryTree {
                  */
                 if (!(focusedNode._left instanceof TreeNode))
                     return focusedNode._right;
-                if (!(focusNode._right instanceof TreeNode))
+                if (!(focusedNode._right instanceof TreeNode))
                     return focusedNode._left;
                 const minRight = this.min(focusedNode.right);
                 focusedNode = Object.assign(focusedNode, {
