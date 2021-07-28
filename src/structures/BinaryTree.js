@@ -242,7 +242,7 @@ module.exports = class BinaryTree {
 
     /**
      * Immutably clone the tree and it's nodes
-     * @returns {TreeNode}
+     * @returns {BinaryTree}
      */
     clone() {
         const tree = new BinaryTree();
