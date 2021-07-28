@@ -175,8 +175,7 @@ module.exports = class BinaryTree {
      */
     lowerBound(key) {
         key = parseInt(key);
-        if (isNaN(key)) throw new TypeError("key must be a number");
-        if (!(node instanceof TreeNode)) return null;
+        if (isNaN(key)) return null;
         let smallestNode = null;
         this.forEach((node) => {
             if (
@@ -195,8 +194,7 @@ module.exports = class BinaryTree {
      */
     upperBound(key) {
         key = parseInt(key);
-        if (isNaN(key)) throw new TypeError("key must be a number");
-        if (!(node instanceof TreeNode)) return null;
+        if (isNaN(key)) return null;
         let largestNode = null;
         this.forEach((node) => {
             if (
