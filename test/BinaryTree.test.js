@@ -177,4 +177,27 @@ describe("BinaryTree", () => {
             expect(greaterThanRoot).toMatchObject(BT.get(804));
         });
     });
+
+    describe("forEach", () => {
+        it("should throw an error if the callback is not a function", () => {
+            expect(() => BT.forEach()).toThrow(TypeError);
+        });
+        it("should loop through all the nodes in the tree", () => {
+            const expectedArray = BT.toPreOrder();
+            let i = 0;
+            BT.forEach((node, tree) => {
+                expect(node).toMatchObject(expectedArray[i]);
+                expect(tree).toMatchObject(BT);
+                i++;
+            });
+        });
+        it("should bind thisArg to the function", () => {
+            let forEachBind;
+            BT.forEach(function () {
+                forEachBind = this;
+                return null; // Stop loop immediately
+            }, BT.root);
+            expect(forEachBind).toMatchObject(BT.root);
+        });
+    });
 });
