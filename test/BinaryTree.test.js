@@ -55,7 +55,7 @@ describe("BinaryTree", () => {
             new TreeNode(744, 744),
         ];
 
-        it("should throw a TypeError if one/some/all nodes are not a instance of TreeNode", () => {
+        it("should throw a TypeError if one/some/all nodes are not a TreeNode instance", () => {
             const fakeNodes = [{ data: "fake data" }];
             expect(() => BT.insert(fakeNodes)).toThrow(TypeError);
         });
@@ -84,6 +84,33 @@ describe("BinaryTree", () => {
             BT.delete(deleteNode);
             expect(BT.root).not.toMatchObject(deleteNode);
             expect(BT.find((node) => node.key === deleteNode.key)).toBeNull();
+        });
+    });
+
+    describe("delete array", () => {
+        const deleteNodes = [
+            new TreeNode(100, 100),
+            new TreeNode(500, 500),
+            new TreeNode(1000, 1000),
+        ];
+
+        beforeAll(() => {
+            BT.insert(deleteNodes);
+        });
+
+        it("should throw a TypeError if one/some/all nodes are not a TreeNode instance", () => {
+            BT.delete(deleteNodes);
+        });
+        it("should delete the nodes from the tree", () => {
+            BT.delete(deleteNodes);
+            const find100 = BT.find((node) => node.key === 100);
+            const find500 = BT.find((node) => node.key === 500);
+            const find1000 = BT.find((node) => node.key === 1000);
+            expect([find100, find500, find1000]).toStrictEqual([
+                null,
+                null,
+                null,
+            ]);
         });
     });
 });
