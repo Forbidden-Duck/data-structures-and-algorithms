@@ -170,4 +170,11 @@ describe("BinaryTree", () => {
             expect(lessThanRoot).toMatchObject(BT.get(638));
         });
     });
+
+    describe("upperBound", () => {
+        it("should respond with a key greater than the specified key", () => {
+            const greaterThanRoot = BT.upperBound(BT.root.key);
+            expect(greaterThanRoot).toMatchObject(BT.get(804));
+        });
+    });
 });
