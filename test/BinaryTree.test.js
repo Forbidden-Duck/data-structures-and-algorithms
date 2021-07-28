@@ -193,10 +193,14 @@ describe("BinaryTree", () => {
         });
         it("should bind thisArg to the function", () => {
             let forEachBind;
-            BT.forEach(function () {
-                forEachBind = this;
-                return null; // Stop loop immediately
-            }, BT.root);
+            BT.forEach(
+                function () {
+                    forEachBind = this;
+                    return null; // Stop loop immediately
+                },
+                BT.root,
+                BT.root
+            );
             expect(forEachBind).toMatchObject(BT.root);
         });
     });
