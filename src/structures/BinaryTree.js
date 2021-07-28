@@ -29,21 +29,24 @@ module.exports = class BinaryTree {
         }
         if (!(node instanceof TreeNode))
             throw new TypeError("node much be an instance of TreeNode");
+        if (!(this.root instanceof TreeNode)) {
+            this._root = node;
+            return this.root;
+        }
         this.forEach((focusedNode) => {
             if (node.key < focusedNode.key) {
                 if (focusedNode.left instanceof TreeNode)
                     return focusedNode.left;
-                focusedNode.left = node;
-                node.parent = focusedNode;
+                focusedNode._left = node;
+                node._parent = focusedNode;
                 return null;
             }
             if (node.key > focusedNode.key) {
                 if (focusedNode.right instanceof TreeNode)
                     return focusedNode.right;
-                focusedNode.right = node;
-                node.parent = focusedNode;
-                return;
-                null;
+                focusedNode._right = node;
+                node._parent = focusedNode;
+                return null;
             }
             focusedNode.data = node.data;
             return null;
