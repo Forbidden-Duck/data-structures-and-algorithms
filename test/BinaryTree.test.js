@@ -123,4 +123,17 @@ describe("BinaryTree", () => {
             expect(clonedList.size).toBe(0);
         });
     });
+
+    describe("get", () => {
+        it("should throw a TypeError if the key entered is not a number", () => {
+            expect(() => BT.get(NaN)).toThrow(TypeError);
+        });
+        it("should respond with null if a non-existent node is provided", () => {
+            expect(BT.get(999999)).toBeNull();
+        });
+        it("should respond with the node associated with the given key", () => {
+            const rootNode = BT.get(BT.root.key);
+            expect(rootNode).toMatchObject(BT.root);
+        });
+    });
 });
