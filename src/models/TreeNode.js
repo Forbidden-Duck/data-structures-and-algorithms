@@ -48,6 +48,7 @@ module.exports = class TreeNode {
     static compareInstance(a, b) {
         if (!(a instanceof TreeNode) || !(b instanceof TreeNode)) return null;
         if (typeof a.data !== typeof b.data) return false;
+        if (a.key !== b.key) return false;
 
         switch (a.data) {
             case "object": {
