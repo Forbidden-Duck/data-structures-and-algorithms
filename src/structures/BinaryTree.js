@@ -88,7 +88,7 @@ module.exports = class BinaryTree {
                     return focusedNode._left;
                 const minRight = this.min(focusedNode.right);
                 focusedNode = Object.assign(focusedNode, {
-                    key: minRight._key,
+                    _key: minRight.key,
                     data: minRight.data,
                 });
                 focusedNode._right = this.deleteRecursive(focusedNode.right);
