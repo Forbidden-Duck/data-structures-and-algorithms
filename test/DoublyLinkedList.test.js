@@ -386,7 +386,6 @@ describe("DoublyLinkedList", () => {
 
     describe("clear", () => {
         const clonedList = DLL.clone();
-        console.log(clonedList);
 
         it("should delete all nodes in the list", () => {
             clonedList.clear();
