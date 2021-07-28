@@ -113,4 +113,14 @@ describe("BinaryTree", () => {
             ]);
         });
     });
+
+    describe("clear", () => {
+        const clonedList = BT.clone();
+
+        it("should delete all nodes in the list", () => {
+            clonedList.clear();
+            expect(clonedList.root).toBeNull();
+            expect(clonedList.size).toBe(0);
+        });
+    });
 });
