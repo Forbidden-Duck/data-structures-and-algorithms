@@ -136,4 +136,17 @@ describe("BinaryTree", () => {
             expect(rootNode).toMatchObject(BT.root);
         });
     });
+
+    describe("find", () => {
+        it("should throw a TypeError if the callback entered is not a function", () => {
+            expect(() => BT.find("not a function")).toThrow(TypeError);
+        });
+        it("should respond with null if the callback does not return true", () => {
+            expect(BT.find(() => {})).toBeNull();
+        });
+        it("should respond with the node specified in the callback", () => {
+            const rootNode = BT.find((node) => node.key === BT.root.key);
+            expect(rootNode).toMatchObject(BT.root);
+        });
+    });
 });
