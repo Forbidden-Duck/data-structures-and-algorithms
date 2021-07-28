@@ -41,14 +41,30 @@ describe("BinaryTree", () => {
             const find642 = BT.find((node) => node.key === 642);
             const find834 = BT.find((node) => node.key === 834);
             const find166 = BT.find((node) => node.key === 166);
-            expect([find642, find834, find166]).toMatchObject([
-                insertNodes[0],
-                insertNodes[1],
-                insertNodes[2],
-            ]);
+            expect([find642, find834, find166]).toMatchObject(insertNodes);
         });
         it("should should set the root node as the first given node", () => {
             expect(BT.root).toMatchObject(insertNodes[0]);
+        });
+    });
+
+    describe("prepend array", () => {
+        const insertNodes = [
+            new TreeNode(804, 804),
+            new TreeNode(638, 638),
+            new TreeNode(744, 744),
+        ];
+
+        it("should throw a TypeError if one/some/all nodes are not a instance of TreeNode", () => {
+            const fakeNodes = [{ data: "fake data" }];
+            expect(() => BT.insert(fakeNodes)).toThrow(TypeError);
+        });
+        it("should insert all the TreeNodes into the tree", () => {
+            BT.insert(insertNodes);
+            const find804 = BT.find((node) => node.key === 804);
+            const find638 = BT.find((node) => node.key === 638);
+            const find744 = BT.find((node) => node.key === 744);
+            expect([find804, find638, find744]).toMatchObject(insertNodes);
         });
     });
 });
