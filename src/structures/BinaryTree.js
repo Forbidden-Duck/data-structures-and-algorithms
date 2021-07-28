@@ -68,6 +68,8 @@ module.exports = class BinaryTree {
             }
             return;
         }
+        if (!(node instanceof TreeNode))
+            throw new TypeError("node much be an instance of TreeNode");
         const deleteRecursive = (focusedNode) => {
             if (!(focusedNode instanceof TreeNode)) return null;
             // Find the specified node
