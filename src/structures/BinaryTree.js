@@ -169,7 +169,7 @@ module.exports = class BinaryTree {
     }
 
     /**
-     * Find the node with the a key less than the specified key
+     * Find the node with a key less than the specified key
      * @param {number} key
      * @returns {TreeNode}
      */
