@@ -217,4 +217,10 @@ describe("BinaryTree", () => {
             expect(BT.root.data).not.toStrictEqual("bad");
         });
     });
+
+    describe("size", () => {
+        it("should return the size of the tree", () => {
+            expect(BT.size).toBe(5);
+        });
+    });
 });
