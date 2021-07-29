@@ -223,4 +223,12 @@ describe("BinaryTree", () => {
             expect(BT.size).toBe(5);
         });
     });
+
+    describe("toPreOrder", () => {
+        it("should return an array of tree nodes in pre order", () => {
+            expect(BT.toPreOrder().map((node) => node.key)).toMatchObject([
+                744, 166, 638, 834, 804,
+            ]);
+        });
+    });
 });
