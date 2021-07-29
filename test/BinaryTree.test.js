@@ -204,4 +204,17 @@ describe("BinaryTree", () => {
             expect(forEachBind).toMatchObject(BT.root);
         });
     });
+
+    describe("clone", () => {
+        let cloneTree;
+
+        it("should clone the tree", () => {
+            expect((cloneTree = BT.clone())).toMatchObject(BT);
+        });
+        it("should not affect the original tree", () => {
+            cloneTree.root.data = "bad";
+            expect(cloneTree.root.data).toStrictEqual("bad");
+            expect(BT.root.data).not.toStrictEqual("bad");
+        });
+    });
 });
