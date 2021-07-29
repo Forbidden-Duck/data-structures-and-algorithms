@@ -89,6 +89,7 @@ module.exports = class BinaryTree {
                 if (!(focusedNode._right instanceof TreeNode))
                     return focusedNode._left;
                 const minRight = this.min(focusedNode.right);
+                this.delete(minRight); // Delete the node before reinserting it
                 focusedNode = Object.assign(focusedNode, {
                     _key: minRight.key,
                     data: minRight.data,
@@ -244,7 +245,9 @@ module.exports = class BinaryTree {
      */
     clone() {
         const tree = new BinaryTree();
-        this.forEach((node) => tree.insert(new TreeNode(node.data)));
+        this.forEach((node) => {
+            tree.insert(new TreeNode(node.key, node.data));
+        });
         return tree;
     }
 
@@ -254,7 +257,9 @@ module.exports = class BinaryTree {
      */
     get size() {
         let size = 0;
-        this.forEach((node) => size++);
+        this.forEach((node) => {
+            size++;
+        });
         return size;
     }
 
