@@ -244,7 +244,7 @@ module.exports = class BinaryTree {
      */
     clone() {
         const tree = new BinaryTree();
-        this.forEach((node) => tree.insert(new Tree(node.data)));
+        this.forEach((node) => tree.insert(new TreeNode(node.data)));
         return tree;
     }
 
