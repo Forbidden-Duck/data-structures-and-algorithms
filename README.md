@@ -33,6 +33,8 @@ This project is currently under-development.
 
 **6. Binary Tree**
 
+-   TreeNode is designed to hold key, data, left child, right child and parent node
+
 **7. Heaps**
 
 **8. Graphs**
