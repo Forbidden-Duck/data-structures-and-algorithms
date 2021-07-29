@@ -239,4 +239,12 @@ describe("BinaryTree", () => {
             ]);
         });
     });
+
+    describe("toPostOrder", () => {
+        it("should return an array of tree nodes in post order", () => {
+            expect(BT.toPostOrder().map((node) => node.key)).toMatchObject([
+                638, 166, 804, 834, 744,
+            ]);
+        });
+    });
 });
