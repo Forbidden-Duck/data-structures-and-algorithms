@@ -33,10 +33,10 @@ module.exports = class Heap {
 
     /**
      * Returns the parent index of the child
-     * @param {number} childIndx
+     * @param {number} childIdx
      * @returns {number}
      */
-    getParentIndex(childIndx) {
+    getParentIndex(childIdx) {
         return Math.floor((childIdx - 1) / 2);
     }
 
