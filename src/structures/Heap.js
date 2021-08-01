@@ -53,4 +53,13 @@ module.exports = class Heap {
     rightChild(parentIdx) {
         return this.nodes[this.getRightChildIndex(parentIdx)];
     }
+
+    /**
+     * Return the parent of the child
+     * @param {number} childIdx
+     * @returns {HeapNode}
+     */
+    parent(childIdx) {
+        return this.nodes[this.getParentIndex(childIdx)];
+    }
 };
