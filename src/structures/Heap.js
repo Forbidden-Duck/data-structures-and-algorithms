@@ -9,6 +9,10 @@ module.exports = class Heap {
         this.nodes = [];
     }
 
+    get root() {
+        return this.nodes[0];
+    }
+
     /**
      * Returns the index of the parent's left child
      * @param {number} parentIdx
