@@ -4,6 +4,7 @@ module.exports = class Heap {
     constructor() {
         /**
          * @private
+         * @type {HeapNode[]}
          */
         this.nodes = [];
     }
@@ -33,5 +34,23 @@ module.exports = class Heap {
      */
     getParentIndex(childIndx) {
         return Math.floor((childIdx - 1) / 2);
+    }
+
+    /**
+     * Return the left child of the parent
+     * @param {number} parentIdx
+     * @returns {HeapNode}
+     */
+    leftChild(parentIdx) {
+        return this.nodes[this.getLeftChildIndex(parentIdx)];
+    }
+
+    /**
+     * Return the right child of the parent
+     * @param {number} parentIdx
+     * @returns {HeapNode}
+     */
+    rightChild(parentIdx) {
+        return this.nodes[this.getRightChildIndex(parentIdx)];
     }
 };
