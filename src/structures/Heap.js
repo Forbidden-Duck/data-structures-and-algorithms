@@ -25,4 +25,13 @@ module.exports = class Heap {
     getRightChildIndex(parentIdx) {
         return 2 * parentIdx + 2;
     }
+
+    /**
+     * Returns the parent index of the child
+     * @param {number} childIndx
+     * @returns {number}
+     */
+    getParentIndex(childIndx) {
+        return Math.floor((childIdx - 1) / 2);
+    }
 };
