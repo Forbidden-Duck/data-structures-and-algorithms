@@ -120,6 +120,17 @@ module.exports = class Heap {
     }
 
     /**
+     * Insert the node into the heap
+     * @param {HeapNode} node
+     * @returns {HeapNode}
+     */
+    insert(node) {
+        this.nodes.push(node);
+        this.heapifyUp();
+        return node;
+    }
+
+    /**
      * Swaps two nodes
      * @param {number} idx1
      * @param {number} idx2
