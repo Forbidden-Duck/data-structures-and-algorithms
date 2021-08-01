@@ -91,6 +91,23 @@ module.exports = class Heap {
     }
 
     /**
+     * Compares the left and right child and returns one of the two
+     * @param {number} parentIdx
+     * @returns {number}
+     */
+    compareChildren(parentIdx) {
+        if (!this.leftChild(parentIdx) && !this.rightChild(parentIdx))
+            return -1;
+        const leftChildIdx = this.getLeftChildIndex(parentIdx);
+        const rightChildIdx = this.getRightChildIndex(parentIdx);
+        if (!this.leftChild()) return rightChildIdx;
+        if (!this.rightChild()) return leftChildIdx;
+        return this.compareByIndex(leftChildIdx, rightChildIdx)
+            ? leftChildIdx
+            : rightChildId;
+    }
+
+    /**
      * Checks if a parent and child nodes should be swapped
      * @param {number} parentIdx
      * @param {number} childIdx
@@ -123,6 +140,19 @@ module.exports = class Heap {
             this.swap(parentIdx, index);
             index = parentIdx;
             parentIdx = Math.floor((index - 1) / 2);
+        }
+    }
+
+    /**
+     * Pushes the top node down into the right position
+     * @param {number} [index]
+     */
+    heapifyDown(index = 0) {
+        let childIdx = this.compareChildren(index);
+        while (this.shouldSwap(index, childIdx)) {
+            this.swap(index, childIdx);
+            index = childIdx;
+            childIdx = this.compareChildren(index);
         }
     }
 
