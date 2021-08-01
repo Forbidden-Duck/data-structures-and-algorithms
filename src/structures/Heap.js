@@ -64,34 +64,7 @@ module.exports = class Heap {
     }
 
     /**
-     * Parent has a left child
-     * @param {number} parentIdx
-     * @returns {boolean}
-     */
-    hasLeftChild(parentIdx) {
-        return this.getLeftChildIndex(parentIdx) < this.nodes.length;
-    }
-
-    /**
-     * Parent has a right child
-     * @param {number} parentIdx
-     * @returns {boolean}
-     */
-    hasRightChild(parentIdx) {
-        return this.getRightChildIndex(parentIdx) < this.nodes.length;
-    }
-
-    /**
-     * Child has parent
-     * @param {number} childIdx
-     * @returns {boolean}
-     */
-    hasParent(childIdx) {
-        return this.getParentIndex(childIdx) >= 0;
-    }
-
-    /**
-     * Checks if the parent and child nodes are in the right position
+     * Checks if the parent and child node are in the right position
      * @param {HeapNode} parent
      * @param {HeapNode} child
      * @returns {boolean}
@@ -103,7 +76,7 @@ module.exports = class Heap {
     }
 
     /**
-     * Checks if the parent and child nodes are in the right position
+     * Checks if the parent and child node are in the right position
      * @param {number} parentIdx
      * @param {number} childIdx
      * @returns {boolean}
