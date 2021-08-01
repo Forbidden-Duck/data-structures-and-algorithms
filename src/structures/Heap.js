@@ -62,4 +62,31 @@ module.exports = class Heap {
     parent(childIdx) {
         return this.nodes[this.getParentIndex(childIdx)];
     }
+
+    /**
+     * Parent has a left child
+     * @param {number} parentIdx
+     * @returns {boolean}
+     */
+    hasLeftChild(parentIdx) {
+        return this.getLeftChildIndex(parentIdx) < this.nodes.length;
+    }
+
+    /**
+     * Parent has a right child
+     * @param {number} parentIdx
+     * @returns {boolean}
+     */
+    hasRightChild(parentIdx) {
+        return this.getRightChildIndex(parentIdx) < this.nodes.length;
+    }
+
+    /**
+     * Child has parent
+     * @param {number} childIdx
+     * @returns {boolean}
+     */
+    hasParent(childIdx) {
+        return this.getParentIndex(childIdx) >= 0;
+    }
 };
