@@ -135,6 +135,66 @@ module.exports = class Heap {
     }
 
     /**
+     * Remove the node from the heap
+     * @param {HeapNode} node
+     */
+    remove(node) {
+        const nodeIndex = this.findIndex((focusedNode) =>
+            HeapNode.compareInstance(node, focusedNode)
+        );
+        if (!nodeIndex) throw new TypeError("Invalid node was provided");
+
+        // If the node is the last child, just remove it
+        if (nodeIndex === this.nodes.length - 1) {
+            this.nodes.pop();
+        } else {
+            // Move the last node to the vacant position
+            this.nodes[nodeIndex] = this.nodes.pop();
+            const parentItemIdx = this.getParentIndex(nodeIndex);
+            // If there is no parent or the parent is in the correct position with the node
+            // heapifyDown otherwise heapifyUp
+            if (
+                this.leftChild(nodeIndex) &&
+                (!this.parent(nodeIndex) ||
+                    !this.shouldSwap(parentItemIdx, nodeIndex))
+            ) {
+                this.heapifyDown(nodeIndex);
+            } else {
+                this.heapifyUp(nodeIndex);
+            }
+        }
+    }
+
+    /**
+     * Return the node at the given index
+     * @param {number} index
+     * @returns {HeapNode}
+     */
+    get(index) {
+        return this.nodes[index] || null;
+    }
+
+    /**
+     * Find a node using the specified callback function
+     * @param {(this: void, value: HeapNode, index: number, obj: HeapNode[]) => value is HeapNode} callbackFn
+     * @param {*} thisArg
+     * @returns {HeapNode}
+     */
+    find(callbackFn, thisArg) {
+        return this.nodes.find(callbackFn, thisArg) || null;
+    }
+
+    /**
+     * Find the index of the node using the specified callback function
+     * @param {(value: HeapNode, index: number, obj: HeapNode[]) => unknown} callbackFn
+     * @param {*} thisArg
+     * @returns {number}
+     */
+    findIndex(callbackFn, thisArg) {
+        return this.nodes.findIndex(callbackFn, thisArg) || null;
+    }
+
+    /**
      * Swaps two nodes
      * @param {number} idx1
      * @param {number} idx2
@@ -169,6 +229,15 @@ module.exports = class Heap {
             index = childIdx;
             childIdx = this.compareChildren(index);
         }
+    }
+
+    /**
+     * Loop through every item of the heap
+     * @param {(value: HeapNode, index: number, array: HeapNode[]) => void} callbackFn
+     * @param {*} thisArg
+     */
+    forEach(callbackFn, thisArg) {
+        this.nodes.forEach(callbackFn, thisArg);
     }
 
     /**
