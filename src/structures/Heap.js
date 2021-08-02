@@ -1,5 +1,3 @@
-const MaxHeap = require("./MaxHeap");
-const MinHeap = require("./MinHeap");
 const HeapNode = require("../models/HeapNode");
 
 module.exports = class Heap {
@@ -274,7 +272,7 @@ module.exports = class Heap {
 
     /**
      * Immutably clone the heap and it's nodes
-     * @template {MaxHeap | MinHeap} S
+     * @template {import("./MaxHeap") | import("./MinHeap")} S
      * @param {new S} HeapType
      * @returns {S}
      */
