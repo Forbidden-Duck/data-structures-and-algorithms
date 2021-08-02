@@ -13,4 +13,12 @@ module.exports = class MaxHeap extends Heap {
         if (isNaN(childKey)) throw new TypeError("childKey must be a number");
         return parentKey > childKey;
     }
+
+    /**
+     * Immutably clone the heap and it's nodes
+     * @returns {MaxHeap}
+     */
+    clone() {
+        return super.clone(MaxHeap);
+    }
 };
