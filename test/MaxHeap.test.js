@@ -104,6 +104,17 @@ describe("MaxHeap", () => {
         });
     });
 
+    describe("clear", () => {
+        const clonedHeap = MH.clone();
+
+        it("should clone all nodes in the heap", () => {
+            clonedHeap.clear();
+            expect(clonedHeap.root).toBeNull();
+            expect(clonedHeap.nodes).toStrictEqual([]);
+            expect(clonedHeap.size).toBe(0);
+        });
+    });
+
     /**
      * Skip the following as they are used internally
      * heapifyUp
