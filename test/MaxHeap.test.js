@@ -19,4 +19,14 @@ describe("MaxHeap", () => {
             expect(MH.root).toBeNull();
         });
     });
+
+    describe("get root", () => {
+        it("should return the set HeapNode", () => {
+            // New instance to not override existing root node
+            const heap = new MaxHeap();
+            const root = new HeapNode("root");
+            heap.nodes[0] = root;
+            expect(heap.root).toMatchObject(root);
+        });
+    });
 });
