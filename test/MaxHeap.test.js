@@ -85,6 +85,25 @@ describe("MaxHeap", () => {
         });
     });
 
+    describe("delete", () => {
+        let deleteNote;
+
+        beforeAll(() => {
+            // Make sure deleteNode does not mutate the MaxHeap root
+            deleteNode = new HeapNode(MH.root.key, MH.root.data);
+        });
+
+        it("should throw a TypeError if a non Heap is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => MH.deleteNode(fakeNode)).toThrow(TypeError);
+        });
+        it("should delete the node from the heap", () => {
+            MH.delete(deleteNode);
+            expect(MH.root).not.toMatchObject(deleteNode);
+            expect(MH.find((node) => node.key === deleteNode.key)).toBeNull();
+        });
+    });
+
     /**
      * Skip the following as they are used internally
      * heapifyUp
