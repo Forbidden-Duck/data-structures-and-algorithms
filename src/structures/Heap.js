@@ -117,7 +117,7 @@ module.exports = class Heap {
         if (!this.rightChild(parentIdx)) return leftChildIdx;
         return this.compareByIndex(leftChildIdx, rightChildIdx)
             ? leftChildIdx
-            : rightChildId;
+            : rightChildIdx;
     }
 
     /**
