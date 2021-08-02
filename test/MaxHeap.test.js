@@ -10,7 +10,6 @@ describe("MaxHeap", () => {
             expect(() => new MaxHeap()).not.toThrow(Error);
         });
         it("should create an instance of MaxHeap", () => {
-            expect(MH).not.toBeInstanceOf(Heap);
             expect(MH).toBeInstanceOf(MaxHeap);
         });
         it("should set the nodes property to an empty array", () => {
