@@ -5,7 +5,7 @@ const HeapNode = require("../models/HeapNode");
 module.exports = class Heap {
     constructor() {
         if (new.target === Heap)
-            throw new TypeError("Cannot instantiate Heap directly");
+            throw new Error("Cannot instantiate Heap directly");
         /**
          * @private
          * @type {HeapNode[]}
