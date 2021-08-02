@@ -160,4 +160,23 @@ describe("MaxHeap", () => {
      * heapifyUp
      * heapifyDown
      */
+
+    describe("forEach", () => {
+        it("should throw a TypeError if the callback is not a function", () => {
+            expect(() => MH.forEach("not a function")).toThrow(TypeError);
+        });
+        it("should loop through all the nodes in the heap", () => {
+            const expectedArray = MH.nodes;
+            MH.forEach((node, index) => {
+                expect(node).toMatchObject(expectedArray[index]);
+            });
+        });
+        it("should bind thisArg to the function", () => {
+            let forEachBind;
+            MH.forEach(function () {
+                forEachBind = this;
+            }, MH.root);
+            expect(forEachBind).toMatchObject(MH.root);
+        });
+    });
 });
