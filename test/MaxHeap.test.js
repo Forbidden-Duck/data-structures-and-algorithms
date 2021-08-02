@@ -192,4 +192,10 @@ describe("MaxHeap", () => {
             expect(MH.root.data).not.toStrictEqual("bad");
         });
     });
+
+    describe("size", () => {
+        it("should return the size of the heap", () => {
+            expect(MH.size).toBe(5);
+        });
+    });
 });
