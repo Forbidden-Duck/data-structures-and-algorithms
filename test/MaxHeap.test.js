@@ -1,4 +1,3 @@
-const Heap = require("../src/structures/Heap");
 const MaxHeap = require("../src/structures/MaxHeap");
 const HeapNode = require("../src/models/HeapNode");
 
