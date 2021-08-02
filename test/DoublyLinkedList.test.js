@@ -250,7 +250,9 @@ describe("DoublyLinkedList", () => {
         it("should delete the node from the tail of the list", () => {
             DLL.delete(deleteNode);
             expect(DLL.tail).not.toMatchObject(deleteNode);
-            expect(DLL.find(deleteNode.data)).toBeNull();
+            expect(
+                DLL.find((node) => node.data === deleteNode.data)
+            ).toBeNull();
         });
         it("should set the previous node as the new tail node", () => {
             expect(DLL.tail).toBeInstanceOf(DoubleNode);
@@ -276,9 +278,15 @@ describe("DoublyLinkedList", () => {
         it("should delete the nodes from the head of the list", () => {
             DLL.delete(deleteNodes);
             expect(DLL.head).not.toMatchObject(deleteNodes[0]);
-            expect(DLL.find(deleteNodes[0].data)).toBeNull();
-            expect(DLL.find(deleteNodes[1].data)).toBeNull();
-            expect(DLL.find(deleteNodes[2].data)).toBeNull();
+            expect(
+                DLL.find((node) => node.data === deleteNodes[0].data)
+            ).toBeNull();
+            expect(
+                DLL.find((node) => node.data === deleteNodes[1].data)
+            ).toBeNull();
+            expect(
+                DLL.find((node) => node.data === deleteNodes[2].data)
+            ).toBeNull();
         });
         it("should set the next node as the new head node", () => {
             expect(DLL.head).toBeInstanceOf(DoubleNode);
@@ -304,7 +312,9 @@ describe("DoublyLinkedList", () => {
             expect(deleteBeforeNode._previous).not.toMatchObject(
                 nodeBeingDeleted
             );
-            expect(DLL.find(nodeBeingDeleted.data)).toBeNull();
+            expect(
+                DLL.find((node) => node.data === nodeBeingDeleted.data)
+            ).toBeNull();
         });
     });
 
@@ -328,8 +338,12 @@ describe("DoublyLinkedList", () => {
             expect(DLL.tail).toMatchObject(deleteBeforeNodes[1]);
             expect(deleteBeforeNodes[0]._previous).toBeNull();
             expect(DLL.tail._previous).not.toMatchObject(deleteBeforeNodes[1]);
-            expect(DLL.find(nodesBeingDeleted[0].data)).toBeNull();
-            expect(DLL.find(nodesBeingDeleted[1].data)).toBeNull();
+            expect(
+                DLL.find((node) => node.data === nodesBeingDeleted[0].data)
+            ).toBeNull();
+            expect(
+                DLL.find((node) => node.data === nodesBeingDeleted[1].data)
+            ).toBeNull();
         });
     });
 
@@ -349,7 +363,9 @@ describe("DoublyLinkedList", () => {
         it("should delete the node after the given node", () => {
             DLL.deleteAfter(deleteAfterNode);
             expect(deleteAfterNode.next).toBeNull();
-            expect(DLL.find(nodeBeingDeleted.data)).toBeNull();
+            expect(
+                DLL.find((node) => node.data === nodeBeingDeleted.data)
+            ).toBeNull();
         });
         it("should set the tail as the node before the deleted node", () => {
             expect(DLL.tail).toBeInstanceOf(DoubleNode);
@@ -379,8 +395,12 @@ describe("DoublyLinkedList", () => {
                 nodesBeingDeleted[0]
             );
             expect(deleteAfterNodes[1].next).toBeNull();
-            expect(DLL.find(nodesBeingDeleted[0].data)).toBeNull();
-            expect(DLL.find(nodesBeingDeleted[1].data)).toBeNull();
+            expect(
+                DLL.find((node) => node.data === nodesBeingDeleted[0].data)
+            ).toBeNull();
+            expect(
+                DLL.find((node) => node.data === nodesBeingDeleted[1].data)
+            ).toBeNull();
         });
     });
 
@@ -408,12 +428,18 @@ describe("DoublyLinkedList", () => {
 
     describe("find", () => {
         it("should return null if no node is found", () => {
-            const findNode = DLL.find("this is a non existent node");
+            const findNode = DLL.find(
+                (node) => node.data === "this is a non existent node"
+            );
             expect(findNode).toBeNull();
         });
         it("should respond with the node with the data provided", () => {
-            const findHeadNode = DLL.find(DLL.head.data);
-            const findTailNode = DLL.find(DLL.tail.data);
+            const findHeadNode = DLL.find(
+                (node) => node.data === DLL.head.data
+            );
+            const findTailNode = DLL.find(
+                (node) => node.data === DLL.tail.data
+            );
             expect(findHeadNode).toMatchObject(DLL.head);
             expect(findTailNode).toMatchObject(DLL.tail);
         });
