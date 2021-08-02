@@ -113,8 +113,8 @@ module.exports = class Heap {
             return -1;
         const leftChildIdx = this.getLeftChildIndex(parentIdx);
         const rightChildIdx = this.getRightChildIndex(parentIdx);
-        if (!this.leftChild()) return rightChildIdx;
-        if (!this.rightChild()) return leftChildIdx;
+        if (!this.leftChild(parentIdx)) return rightChildIdx;
+        if (!this.rightChild(parentIdx)) return leftChildIdx;
         return this.compareByIndex(leftChildIdx, rightChildIdx)
             ? leftChildIdx
             : rightChildId;
