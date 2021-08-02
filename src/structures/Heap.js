@@ -146,10 +146,10 @@ module.exports = class Heap {
     }
 
     /**
-     * Remove the node from the heap
+     * Delete the node from the heap
      * @param {HeapNode} node
      */
-    remove(node) {
+    delete(node) {
         if (!(node instanceof HeapNode))
             throw new TypeError("node must be an instance of HeapNode");
         const nodeIndex = this.findIndex((focusedNode) =>
@@ -157,7 +157,7 @@ module.exports = class Heap {
         );
         if (!nodeIndex) throw new TypeError("Invalid node was provided");
 
-        // If the node is the last child, just remove it
+        // If the node is the last child, just delete it
         if (nodeIndex === this.nodes.length - 1) {
             this.nodes.pop();
         } else {
