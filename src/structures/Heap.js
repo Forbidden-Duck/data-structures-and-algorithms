@@ -179,6 +179,16 @@ module.exports = class Heap {
     }
 
     /**
+     * Clear the heap
+     */
+    clear() {
+        // Loop through the heap and delete every node and it's link
+        this.forEach((focusedNode) => {
+            this.delete(focusedNode);
+        });
+    }
+
+    /**
      * Return the node at the given index
      * @param {number} index
      * @returns {HeapNode}
