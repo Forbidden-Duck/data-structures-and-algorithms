@@ -12,7 +12,7 @@ module.exports = class Heap {
     }
 
     get root() {
-        return this.nodes[0];
+        return this.nodes[0] || null;
     }
 
     /**
