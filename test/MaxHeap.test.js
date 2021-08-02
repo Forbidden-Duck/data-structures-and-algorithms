@@ -179,4 +179,17 @@ describe("MaxHeap", () => {
             expect(forEachBind).toMatchObject(MH.root);
         });
     });
+
+    describe("clone", () => {
+        let cloneHeap;
+
+        it("should clone the heap", () => {
+            expect((cloneHeap = MH.clone())).toMatchObject(MH);
+        });
+        it("should not affect the original heap", () => {
+            cloneHeap.root.data = "bad";
+            expect(cloneHeap.root.data).toStrictEqual("bad");
+            expect(MH.root.data).not.toStrictEqual("bad");
+        });
+    });
 });
