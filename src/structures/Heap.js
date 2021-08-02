@@ -19,6 +19,7 @@ module.exports = class Heap {
      * @returns {number}
      */
     getLeftChildIndex(parentIdx) {
+        if (isNaN(parentIdx)) throw new TypeError("parentIdx must be a number");
         return 2 * parentIdx + 1;
     }
 
@@ -28,6 +29,7 @@ module.exports = class Heap {
      * @returns {number}
      */
     getRightChildIndex(parentIdx) {
+        if (isNaN(parentIdx)) throw new TypeError("parentIdx must be a number");
         return 2 * parentIdx + 2;
     }
 
@@ -37,6 +39,7 @@ module.exports = class Heap {
      * @returns {number}
      */
     getParentIndex(childIdx) {
+        if (isNaN(childIdx)) throw new TypeError("childIdx must be a number");
         return Math.floor((childIdx - 1) / 2);
     }
 
@@ -76,6 +79,10 @@ module.exports = class Heap {
     compareByNode(parent, child) {
         if (typeof this.compareKeys !== "function")
             throw new Error("Not implemented");
+        if (!(parent instanceof HeapNode))
+            throw new TypeError("parent must be an instance of HeapNode");
+        if (!(child instanceof HeapNode))
+            throw new TypeError("child must be an instance of HeapNode");
         return this.compareKeys(parent.key, child.key);
     }
 
@@ -118,6 +125,8 @@ module.exports = class Heap {
      * @returns {boolean}
      */
     shouldSwap(parentIdx, childIdx) {
+        if (isNaN(parentIdx)) throw new TypeError("parentIdx must be a number");
+        if (isNaN(childIdx)) throw new TypeError("childIdx must be a number");
         if (parentIdx < 0 || parentIdx >= this.size) return false;
         if (childIdx < 0 || childIdx >= this.size) return false;
         return !this.compareByIndex(parentIdx, childIdx);
@@ -129,6 +138,8 @@ module.exports = class Heap {
      * @returns {HeapNode}
      */
     insert(node) {
+        if (!(node instanceof HeapNode))
+            throw new TypeError("node must be an instance of HeapNode");
         this.nodes.push(node);
         this.heapifyUp();
         return node;
@@ -139,6 +150,8 @@ module.exports = class Heap {
      * @param {HeapNode} node
      */
     remove(node) {
+        if (!(node instanceof HeapNode))
+            throw new TypeError("node must be an instance of HeapNode");
         const nodeIndex = this.findIndex((focusedNode) =>
             HeapNode.compareInstance(node, focusedNode)
         );
@@ -171,6 +184,7 @@ module.exports = class Heap {
      * @returns {HeapNode}
      */
     get(index) {
+        if (isNaN(index)) throw new TypeError("index must be a number");
         return this.nodes[index] || null;
     }
 
@@ -200,6 +214,8 @@ module.exports = class Heap {
      * @param {number} idx2
      */
     swap(idx1, idx2) {
+        if (isNaN(idx1)) throw new TypeError("idx1 must be a number");
+        if (isNaN(idx2)) throw new TypeError("idx2 must be a number");
         const temp = this.nodes[idx1];
         this.nodes[idx1] = this.nodes[idx2];
         this.nodes[idx2] = temp;
@@ -210,6 +226,7 @@ module.exports = class Heap {
      * @param {number} [index]
      */
     heapifyUp(index = this.nodes.length - 1) {
+        if (isNaN(index)) index = this.nodes.length - 1;
         let parentIdx = Math.floor((index - 1) / 2);
         while (this.shouldSwap(parentIdx, index)) {
             this.swap(parentIdx, index);
@@ -223,6 +240,7 @@ module.exports = class Heap {
      * @param {number} [index]
      */
     heapifyDown(index = 0) {
+        if (isNaN(index)) index = 0;
         let childIdx = this.compareChildren(index);
         while (this.shouldSwap(index, childIdx)) {
             this.swap(index, childIdx);
