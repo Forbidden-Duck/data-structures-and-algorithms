@@ -29,4 +29,24 @@ describe("MaxHeap", () => {
             expect(heap.root).toMatchObject(root);
         });
     });
+
+    /**
+     * Skip the following as they are used internally
+     * getLeftChildIndex
+     * getRightChildIndex
+     * getParentIndex
+     * leftChild
+     * rightChild
+     * parent
+     * compareByNode
+     * compareByIndex
+     * compareChildren
+     * shouldSwap
+     */
+
+    /**
+     * Skip the following as they are used internally
+     * heapifyUp
+     * heapifyDown
+     */
 });
