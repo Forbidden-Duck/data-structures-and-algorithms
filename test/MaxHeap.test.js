@@ -115,6 +115,19 @@ describe("MaxHeap", () => {
         });
     });
 
+    describe("get", () => {
+        it("should throw a TypeError if the index entered is not a number", () => {
+            expect(() => MH.get(NaN)).toThrow(TypeError);
+        });
+        it("should respond with null if a non-existent node is provided", () => {
+            expect(MH.get(999999)).toBeNull();
+        });
+        it("should respond with the node associated with the given index", () => {
+            const rootNode = MH.get(0);
+            expect(rootNode).toMatchObject(MH.root);
+        });
+    });
+
     /**
      * Skip the following as they are used internally
      * heapifyUp
