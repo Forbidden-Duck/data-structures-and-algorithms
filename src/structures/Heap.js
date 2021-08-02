@@ -1,3 +1,5 @@
+const MaxHeap = require("./MaxHeap");
+const MinHeap = require("./MinHeap");
 const HeapNode = require("../models/HeapNode");
 
 module.exports = class Heap {
@@ -272,10 +274,12 @@ module.exports = class Heap {
 
     /**
      * Immutably clone the heap and it's nodes
-     * @returns {Heap}
+     * @template {MaxHeap | MinHeap} S
+     * @param {new S} HeapType
+     * @returns {S}
      */
-    clone() {
-        const heap = new Heap();
+    clone(HeapType) {
+        const heap = new HeapType();
         this.forEach((node) => {
             heap.insert(new HeapNode(node.key, node.data));
         });
