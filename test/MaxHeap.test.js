@@ -44,6 +44,31 @@ describe("MaxHeap", () => {
      * shouldSwap
      */
 
+    describe("insert", () => {
+        const insertNodes = [
+            new HeapNode(642, 642),
+            new HeapNode(834, 834),
+            new HeapNode(166, 166),
+        ];
+
+        it("should throw a TypeError if a non HeapNode is passed", () => {
+            const fakeNode = { data: "fake data" };
+            expect(() => MH.insert(fakeNode)).toThrow(TypeError);
+        });
+        it("should insert the HeapNodes into the heap", () => {
+            MH.insert(insertNodes[0]);
+            MH.insert(insertNodes[1]);
+            MH.insert(insertNodes[2]);
+            const find642 = MH.find((node) => node.key === 642);
+            const find834 = MH.find((node) => node.key === 834);
+            const find166 = MH.find((node) => node.key === 166);
+            expect([find642, find834, find166]).toMatchObject(insertNodes);
+        });
+        it("should should set the root node as the largest given node", () => {
+            expect(MH.root).toMatchObject(insertNodes[1]);
+        });
+    });
+
     /**
      * Skip the following as they are used internally
      * heapifyUp
