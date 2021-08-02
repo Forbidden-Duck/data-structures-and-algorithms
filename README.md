@@ -37,6 +37,8 @@ This project is currently under-development.
 
 **7. Heaps**
 
+-   HeapNode is designed to only hold the key and data, the classes themselves manage what the order is
+
 **8. Graphs**
 
 **9. Algorithms**
