@@ -269,6 +269,18 @@ module.exports = class Heap {
     }
 
     /**
+     * Immutably clone the heap and it's nodes
+     * @returns {Heap}
+     */
+    clone() {
+        const heap = new Heap();
+        this.forEach((node) => {
+            heap.insert(new HeapNode(node.key, node.data));
+        });
+        return heap;
+    }
+
+    /**
      * Return the size of the Heap
      * @returns {number}
      */
