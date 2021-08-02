@@ -157,7 +157,7 @@ module.exports = class Heap {
         const nodeIndex = this.findIndex((focusedNode) =>
             HeapNode.compareInstance(node, focusedNode)
         );
-        if (!nodeIndex) throw new TypeError("Invalid node was provided");
+        if (nodeIndex <= -1) throw new TypeError("Invalid node was provided");
 
         // If the node is the last child, just delete it
         if (nodeIndex === this.nodes.length - 1) {
