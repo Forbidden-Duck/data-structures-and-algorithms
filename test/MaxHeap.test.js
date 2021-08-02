@@ -128,6 +128,32 @@ describe("MaxHeap", () => {
         });
     });
 
+    describe("find", () => {
+        it("should throw a TypeError if the callback entered is not a function", () => {
+            expect(() => MH.find("not a function")).toThrow(TypeError);
+        });
+        it("should respond with null if the callback does not return true", () => {
+            expect(MH.find(() => {})).toBeNull();
+        });
+        it("should respond with the node specified by the callback", () => {
+            const rootNode = MH.find((node) => node.key === MH.root.key);
+            expect(rootNode).toMatchObject(MH.root);
+        });
+    });
+
+    describe("findIndex", () => {
+        it("should throw a TypeError if the callback entered is not a function", () => {
+            expect(() => MH.findIndex("not a function")).toThrow(TypeError);
+        });
+        it("should respond with -1 if the callback does not return true", () => {
+            expect(MH.findIndex(() => {})).toBe(-1);
+        });
+        it("should respond with the index of the node specified by the callback", () => {
+            const rootNode = MH.findIndex((node) => node.key === MH.root.key);
+            expect(rootNode).toBe(0);
+        });
+    });
+
     /**
      * Skip the following as they are used internally
      * swap
