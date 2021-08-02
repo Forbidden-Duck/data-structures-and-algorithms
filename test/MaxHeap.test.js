@@ -130,6 +130,7 @@ describe("MaxHeap", () => {
 
     /**
      * Skip the following as they are used internally
+     * swap
      * heapifyUp
      * heapifyDown
      */
