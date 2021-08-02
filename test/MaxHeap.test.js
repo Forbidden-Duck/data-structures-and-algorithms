@@ -49,6 +49,9 @@ describe("MaxHeap", () => {
             new HeapNode(642, 642),
             new HeapNode(834, 834),
             new HeapNode(166, 166),
+            new HeapNode(804, 804),
+            new HeapNode(638, 638),
+            new HeapNode(744, 744),
         ];
 
         it("should throw a TypeError if a non HeapNode is passed", () => {
@@ -59,10 +62,23 @@ describe("MaxHeap", () => {
             MH.insert(insertNodes[0]);
             MH.insert(insertNodes[1]);
             MH.insert(insertNodes[2]);
+            MH.insert(insertNodes[3]);
+            MH.insert(insertNodes[4]);
+            MH.insert(insertNodes[5]);
             const find642 = MH.find((node) => node.key === 642);
             const find834 = MH.find((node) => node.key === 834);
             const find166 = MH.find((node) => node.key === 166);
-            expect([find642, find834, find166]).toMatchObject(insertNodes);
+            const find804 = MH.find((node) => node.key === 804);
+            const find638 = MH.find((node) => node.key === 638);
+            const find744 = MH.find((node) => node.key === 744);
+            expect([
+                find642,
+                find834,
+                find166,
+                find804,
+                find638,
+                find744,
+            ]).toMatchObject(insertNodes);
         });
         it("should should set the root node as the largest given node", () => {
             expect(MH.root).toMatchObject(insertNodes[1]);
