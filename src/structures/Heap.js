@@ -217,7 +217,7 @@ module.exports = class Heap {
      * @returns {number}
      */
     findIndex(callbackFn, thisArg) {
-        return this.nodes.findIndex(callbackFn, thisArg) || null;
+        return this.nodes.findIndex(callbackFn, thisArg);
     }
 
     /**
