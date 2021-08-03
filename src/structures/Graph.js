@@ -46,8 +46,10 @@ module.exports = class Graph {
      * @param {number} key
      */
     deleteVertex(key) {
-        if (!this.hasVertex(key)) return;
-        for (const edgeNode of this.vertices.get(key).edges.values) {
+        if (!this.hasVertex(key)) return; // Triggers an error if not a number
+        const currentNode = this.vertices.get(key);
+        for (const edgeNode of this.vertices.values) {
+            currentNode.deleteEdge(edgeNode.key);
             edgeNode.deleteEdge(key);
         }
         this.vertices.delete(key);
@@ -80,14 +82,21 @@ module.exports = class Graph {
             throw new TypeError(
                 "source and destination must be either a GraphNode or a number"
             );
+        // Extract the key from the node or just use the param as the key
+        const srcKey = source instanceof GraphNode ? source.key : source;
+        const destKey =
+            destination instanceof GraphNode ? destination.key : destination;
+        // Using the find the node otherwise add it
         const srcNode =
-            source instanceof GraphNode ? source : new GraphNode(source, null);
+            this.vertices.get(srcKey) ||
+            (source instanceof GraphNode
+                ? this.addVertex(source)
+                : this.addVertex(new GraphNode(srcKey, null)));
         const destNode =
-            destination instanceof GraphNode
-                ? destination
-                : new GraphNode(destination, null);
-        if (!this.hasVertex(srcNode.key)) this.addVertex(srcNode);
-        if (!this.hasVertex(destNode.key)) this.addVertex(destNode);
+            this.vertices.get(destKey) ||
+            (destination instanceof GraphNode
+                ? this.addVertex(destination)
+                : this.addVertex(new GraphNode(destKey, null)));
         srcNode.addEdge(destNode);
         if (!this.isDirected) {
             destNode.addEdge(srcNode);
