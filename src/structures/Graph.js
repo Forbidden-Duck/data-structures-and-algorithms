@@ -206,7 +206,7 @@ module.exports = class Graph {
          */
         const visited = [];
         stack.push(start);
-        while (!queue.isEmpty()) {
+        while (!stack.isEmpty()) {
             /**
              * @type {GraphNode}
              */
