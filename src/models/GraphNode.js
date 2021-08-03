@@ -15,32 +15,32 @@ module.exports = class GraphNode {
         /**
          * @private
          */
-        this.adjacents = new HashMap(64);
+        this.edges = new HashMap(64);
     }
 
     /**
-     * Get an adjacent node
+     * Get an edge node
      * @param {number} key
      * @returns {GraphNode}
      */
-    getAdjacent(key) {
-        return this.adjacents.get(key);
+    getEdge(key) {
+        return this.edges.get(key);
     }
 
     /**
-     * Add a node adjacent
+     * Add a node edge
      * @param {GraphNode} node
      * @returns {GraphNode}
      */
-    addAdjacent(node) {
-        return this.adjacents.set(node.key, node);
+    addEdge(node) {
+        return this.edges.set(node.key, node);
     }
 
     /**
-     * Delete an adjacent node
+     * Delete an edge node
      * @param {number} key
      */
-    deleteAdjacent(key) {
-        this.adjacents.delete(key);
+    deleteEdge(key) {
+        this.edges.delete(key);
     }
 };
