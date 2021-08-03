@@ -41,6 +41,10 @@ This project is currently under-development.
 
 **8. Graphs**
 
+-   GraphNode is designed to hold key, data and all the edges related to that node
+-   GraphNode uses HashMap to store the edges
+-   Graph uses HashMap to store vertices
+
 **9. Algorithms**
 
 -   Recursion
