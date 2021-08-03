@@ -57,4 +57,35 @@ module.exports = class Graph {
             this.vertices.get(srcKey).getEdge(destKey) instanceof GraphNode
         );
     }
+
+    /**
+     * Add a edge link between the source and the destination
+     * @param {GraphNode | number} source
+     * @param {GraphNode | number} destination
+     * @returns {{ source: GraphNode, destination: GraphNode }}
+     */
+    addEdge(source, destination) {
+        if (
+            !(source instanceof GraphNode) ||
+            isNaN(source) ||
+            !(destination instanceof GraphNode) ||
+            isNaN(destination)
+        )
+            throw new TypeError(
+                "source and destination must be either a GraphNode or a number"
+            );
+        const srcNode =
+            source instanceof GraphNode ? source : new GraphNode(source, null);
+        const destNode =
+            destination instanceof GraphNode
+                ? destination
+                : new GraphNode(destination, null);
+        if (!this.hasVertex(srcNode.key)) this.addVertex(srcNode);
+        if (!this.hasVertex(destNode.key)) this.addVertex(destNode);
+        srcNode.addEdge(destNode);
+        if (!this.isDirected) {
+            destNode.addEdge(srcNode);
+        }
+        return { source: srcNode, destination: destNode };
+    }
 };
