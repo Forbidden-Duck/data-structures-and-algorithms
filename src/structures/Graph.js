@@ -34,7 +34,7 @@ module.exports = class Graph {
     }
 
     /**
-     * Remove a vertex from the graph
+     * Delete a vertex from the graph
      * @param {number} key
      */
     deleteVertex(key) {
@@ -87,5 +87,21 @@ module.exports = class Graph {
             destNode.addEdge(srcNode);
         }
         return { source: srcNode, destination: destNode };
+    }
+
+    /**
+     * Delete a link between the source and the destination
+     * @param {number} srcKey
+     * @param {number} destKey
+     */
+    deleteEdge(srcKey, destKey) {
+        const srcNode = this.vertices.get(srcKey);
+        const destNode = this.vertices.get(destKey);
+        if (srcNode && destNode) {
+            srcNode.deleteEdge(destKey);
+            if (!this.isDirected) {
+                destNode.deleteEdge(srcKey);
+            }
+        }
     }
 };
