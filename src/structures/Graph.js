@@ -104,4 +104,16 @@ module.exports = class Graph {
             }
         }
     }
+
+    get verticesSize() {
+        return this.vertices.values.length;
+    }
+
+    get edgesSize() {
+        let size = 0;
+        for (const node of this.vertices.values) {
+            size += node.edges.values.length;
+        }
+        return size;
+    }
 };
