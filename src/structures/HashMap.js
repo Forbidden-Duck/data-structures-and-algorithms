@@ -8,7 +8,7 @@ const SingleNode = require("../models/SingleNode");
  */
 const DEFAULT_SIZE = 32;
 
-module.exports = class HashMap<T> {
+module.exports = class HashMap {
     /**
      *
      * @param {number} hashMapSize
