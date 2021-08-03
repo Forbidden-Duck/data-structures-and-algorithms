@@ -32,4 +32,16 @@ module.exports = class Graph {
     addVertex(node) {
         return this.vertices.set(node.key, node);
     }
+
+    /**
+     * Remove a vertex from the graph
+     * @param {number} key
+     */
+    removeVertex(key) {
+        if (!this.hasVertex(key)) return;
+        for (const edgeNode of node.edges.values) {
+            edgeNode.deleteEdge(key);
+        }
+        this.vertices.delete(key);
+    }
 };
