@@ -27,10 +27,13 @@ module.exports = class Stack {
 
     /**
      * Remove the front value
+     * @returns {*}
      */
     pop() {
         if (this.isEmpty()) return null;
+        const tempData = this.elements.head.data;
         this.elements.delete(this.elements.head);
+        return tempData;
     }
 
     /**
