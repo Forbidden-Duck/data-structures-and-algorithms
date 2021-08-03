@@ -37,7 +37,7 @@ module.exports = class Graph {
      * Remove a vertex from the graph
      * @param {number} key
      */
-    removeVertex(key) {
+    deleteVertex(key) {
         if (!this.hasVertex(key)) return;
         for (const edgeNode of node.edges.values) {
             edgeNode.deleteEdge(key);
