@@ -1,5 +1,6 @@
 const GraphNode = require("../models/GraphNode");
 const HashMap = require("./HashMap");
+const Queue = require("./Queue");
 
 module.exports = class Graph {
     /**
@@ -149,5 +150,35 @@ module.exports = class Graph {
             size += node.edges.values.length;
         }
         return size;
+    }
+
+    /**
+     * Convert the graph to an array following the Breadth-first search
+     * @param {GraphNode} start
+     * @returns {GraphNode[]}
+     */
+    toBFS(start = this.vertices.values[0]) {
+        if (!(start instanceof GraphNode)) return [];
+        const queue = new Queue();
+        /**
+         * @type {GraphNode[]}
+         */
+        const visited = [];
+        queue.enqueue(start);
+        while (!queue.isEmpty()) {
+            /**
+             * @type {GraphNode}
+             */
+            const node = queue.dequeue();
+            if (
+                node &&
+                !visited.find((focusedNode) =>
+                    GraphNode.compareInstance(node, focusedNode)
+                )
+            ) {
+                visited.push(node);
+                node.edges.values.forEach((edge) => queue.enqueue(edge));
+            }
+        }
     }
 };
