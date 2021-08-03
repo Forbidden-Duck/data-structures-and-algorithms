@@ -14,4 +14,13 @@ module.exports = class Graph {
         this.vertices = new HashMap(64);
         this.isDirected = edgeDirection === "directed";
     }
+
+    /**
+     * If the graph has the specified vertex
+     * @param {number} key
+     * @return {boolean}
+     */
+    hasVertex(key) {
+        return this.vertices.has(key);
+    }
 };
