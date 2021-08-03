@@ -11,6 +11,9 @@ module.exports = class Graph {
             throw new TypeError(
                 'edgeDirection must be undefined, "directed" or "undirected"'
             );
+        /**
+         * @private
+         */
         this.vertices = new HashMap(64);
         this.isDirected = edgeDirection === "directed";
     }
