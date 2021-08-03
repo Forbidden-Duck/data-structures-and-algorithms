@@ -8,7 +8,7 @@ const SingleNode = require("../models/SingleNode");
  */
 const DEFAULT_SIZE = 32;
 
-module.exports = class HashMap {
+module.exports = class HashMap<T> {
     /**
      *
      * @param {number} hashMapSize
@@ -95,8 +95,10 @@ module.exports = class HashMap {
 
     /**
      * Set a value at the key
+     * @template T
      * @param {string} key
-     * @param {*} value
+     * @param {T} value
+     * @returns {T}
      */
     set(key, value) {
         const hash = this.hash(key);
@@ -108,6 +110,7 @@ module.exports = class HashMap {
         } else {
             bucket.append(new SingleNode({ key, value }));
         }
+        return value;
     }
 
     /**
