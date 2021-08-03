@@ -72,10 +72,8 @@ module.exports = class Graph {
      */
     addEdge(source, destination) {
         if (
-            !(source instanceof GraphNode) ||
-            isNaN(source) ||
-            !(destination instanceof GraphNode) ||
-            isNaN(destination)
+            (!(source instanceof GraphNode) && isNaN(source)) ||
+            (!(destination instanceof GraphNode) && isNaN(destination))
         )
             throw new TypeError(
                 "source and destination must be either a GraphNode or a number"
