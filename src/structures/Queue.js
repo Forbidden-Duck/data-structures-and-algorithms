@@ -27,10 +27,13 @@ module.exports = class Queue {
 
     /**
      * Remove the front value
+     * @returns {*}
      */
     dequeue() {
         if (this.isEmpty()) return null;
+        const tempData = this.elements.head.data;
         this.elements.delete(this.elements.head);
+        return tempData;
     }
 
     /**
