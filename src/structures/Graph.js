@@ -121,6 +121,23 @@ module.exports = class Graph {
         }
     }
 
+    /**
+     * Clone the graph
+     * @returns {Graph}
+     */
+    clone() {
+        const graph = new Graph(this.isDirected ? "directed" : "undirected");
+        for (const vertex of this.vertices.values) {
+            for (const edge of vertex.edges.values) {
+                graph.addEdge(
+                    new GraphNode(vertex.key, vertex.data),
+                    new GraphNode(edge.key, edge.data)
+                );
+            }
+        }
+        return graph;
+    }
+
     get verticesSize() {
         return this.vertices.values.length;
     }
