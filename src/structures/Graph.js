@@ -44,4 +44,17 @@ module.exports = class Graph {
         }
         this.vertices.delete(key);
     }
+
+    /**
+     * If the source has an edge to the destination
+     * @param {number} srcKey
+     * @param {number} destKey
+     * @return {boolean}
+     */
+    hasEdge(srcKey, destKey) {
+        return (
+            this.hasVertex(srcKey) &&
+            this.vertices.get(srcKey).getEdge(destKey) instanceof GraphNode
+        );
+    }
 };
