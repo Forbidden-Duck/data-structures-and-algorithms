@@ -108,6 +108,19 @@ module.exports = class Graph {
         }
     }
 
+    /**
+     * Clear the graph
+     */
+    clear() {
+        /**
+         * Loop through all the vertices and deleting them
+         * Deleting vertices deletes the respective edges as well
+         */
+        for (const vertexKey of this.vertices.keys) {
+            this.deleteVertex(vertexKey);
+        }
+    }
+
     get verticesSize() {
         return this.vertices.values.length;
     }
