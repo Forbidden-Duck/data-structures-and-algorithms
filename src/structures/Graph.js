@@ -21,6 +21,7 @@ module.exports = class Graph {
      * @return {boolean}
      */
     hasVertex(key) {
+        if (isNaN(key)) throw new TypeError("key must be a number");
         return this.vertices.has(key);
     }
 
@@ -30,6 +31,8 @@ module.exports = class Graph {
      * @returns {GraphNode}
      */
     addVertex(node) {
+        if (!(node instanceof GraphNode))
+            throw new TypeError("node must be an instance of GraphNode");
         return this.vertices.set(node.key, node);
     }
 
