@@ -129,11 +129,11 @@ module.exports = class Graph {
     clone() {
         const graph = new Graph(this.isDirected ? "directed" : "undirected");
         for (const vertex of this.vertices.values) {
+            const vertexClone = graph.addVertex(
+                new GraphNode(vertex.key, vertex.data)
+            );
             for (const edge of vertex.edges.values) {
-                graph.addEdge(
-                    new GraphNode(vertex.key, vertex.data),
-                    new GraphNode(edge.key, edge.data)
-                );
+                graph.addEdge(vertexClone, new GraphNode(edge.key, edge.data));
             }
         }
         return graph;
