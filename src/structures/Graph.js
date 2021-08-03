@@ -1,6 +1,7 @@
 const GraphNode = require("../models/GraphNode");
 const HashMap = require("./HashMap");
 const Queue = require("./Queue");
+const Stack = require("./Stack");
 
 module.exports = class Graph {
     /**
@@ -180,5 +181,37 @@ module.exports = class Graph {
                 node.edges.values.forEach((edge) => queue.enqueue(edge));
             }
         }
+        return visited;
+    }
+
+    /**
+     * Convert the graph to an array following the Depth-first search
+     * @param {GraphNode} start
+     * @returns {GraphNode[]}
+     */
+    toDFS(start = this.vertices.values[0]) {
+        if (!(start instanceof GraphNode)) return [];
+        const stack = new Stack();
+        /**
+         * @type {GraphNode[]}
+         */
+        const visited = [];
+        stack.push(start);
+        while (!queue.isEmpty()) {
+            /**
+             * @type {GraphNode}
+             */
+            const node = stack.pop();
+            if (
+                node &&
+                !visited.find((focusedNode) =>
+                    GraphNode.compareInstance(node, focusedNode)
+                )
+            ) {
+                visited.push(node);
+                node.edges.values.forEach((edge) => stack.push(edge));
+            }
+        }
+        return visited;
     }
 };
