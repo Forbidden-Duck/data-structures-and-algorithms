@@ -18,6 +18,10 @@ module.exports = class GraphNode {
         this.edges = new HashMap(64);
     }
 
+    get key() {
+        return this._key;
+    }
+
     /**
      * Get an edge node
      * @param {number} key
