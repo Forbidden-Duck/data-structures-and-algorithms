@@ -233,9 +233,9 @@ describe("Graph", () => {
             graph.addEdge(10, 6);
         });
 
-        it("should return the graph into an array representing the BFS", () => {
-            const toBFS = graph.toDFS(start);
-            expect(toBFS.map((item) => item.key)).toStrictEqual([
+        it("should return the graph into an array representing the DFS", () => {
+            const toDFS = graph.toDFS(start);
+            expect(toDFS.map((item) => item.key)).toStrictEqual([
                 1, 4, 8, 3, 7, 6, 10, 2, 5, 9,
             ]);
         });
