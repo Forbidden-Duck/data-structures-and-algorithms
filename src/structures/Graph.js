@@ -23,4 +23,13 @@ module.exports = class Graph {
     hasVertex(key) {
         return this.vertices.has(key);
     }
+
+    /**
+     * Add a vertex to the graph
+     * @param {GraphNode} node
+     * @returns {GraphNode}
+     */
+    addVertex(node) {
+        return this.vertices.set(node.key, node);
+    }
 };
