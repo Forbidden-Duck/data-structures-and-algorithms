@@ -216,4 +216,28 @@ describe("Graph", () => {
             ]);
         });
     });
+
+    describe("toDFS", () => {
+        const graph = new Graph("undirected");
+        let start;
+
+        beforeAll(() => {
+            start = graph.addEdge(1, 2).source;
+            graph.addEdge(1, 3);
+            graph.addEdge(1, 4);
+            graph.addEdge(5, 2);
+            graph.addEdge(6, 3);
+            graph.addEdge(7, 3);
+            graph.addEdge(8, 4);
+            graph.addEdge(9, 5);
+            graph.addEdge(10, 6);
+        });
+
+        it("should return the graph into an array representing the BFS", () => {
+            const toBFS = graph.toDFS(start);
+            expect(toBFS.map((item) => item.key)).toStrictEqual([
+                1, 4, 8, 3, 7, 6, 10, 2, 5, 9,
+            ]);
+        });
+    });
 });
