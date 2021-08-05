@@ -47,8 +47,8 @@ This project is currently under-development.
 
 **9. Algorithms**
 
--   Bubble Sort
 -   Merge Sort
+-   Bubble Sort
 -   Quicksort
 
 **10. Search and Graph Search Algorithms**
