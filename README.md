@@ -47,8 +47,6 @@ This project is currently under-development.
 
 **9. Algorithms**
 
--   Recursion
--   Asymptotic Notation
 -   Bubble Sort
 -   Merge Sort
 -   Quicksort
