@@ -56,11 +56,23 @@ module.exports = (arr, classType) => {
         leftArr.forEach((item, index) => {
             if (rightArr[index] && rightArr[index].key) {
                 if (item.key <= rightArr[index].key) {
-                    newArr[arrayIndex] = item; // Left array item
+                    if (!classType) {
+                        newArr[arrayIndex] = item;
+                    } else {
+                        newArr[arrayIndex] = new classType(item.key, item.data); // Left array item
+                    }
                     leftArr.splice(index, 1);
                     arrayIndex++;
                 } else {
-                    newArr[arrayIndex] = rightArr[index];
+                    const rightItem = rightArr[index];
+                    if (!classType) {
+                        newArr[arrayIndex] = rightItem;
+                    } else {
+                        newArr[arrayIndex] = new classType(
+                            rightItem.key,
+                            rightItem.data
+                        );
+                    }
                     rightArr.splice(index, 1);
                     arrayIndex++;
                 }
@@ -69,13 +81,21 @@ module.exports = (arr, classType) => {
 
         // Add elements left in the left array
         leftArr.forEach((item) => {
-            newArr[arrayIndex] = item;
+            if (!classType) {
+                newArr[arrayIndex] = item;
+            } else {
+                newArr[arrayIndex] = new classType(item.key, item.data);
+            }
             arrayIndex++;
         });
 
         // Add elements left in the right array
         rightArr.forEach((item) => {
-            newArr[arrayIndex] = item;
+            if (!classType) {
+                newArr[arrayIndex] = item;
+            } else {
+                newArr[arrayIndex] = new classType(item.key, item.data);
+            }
             arrayIndex++;
         });
     };
