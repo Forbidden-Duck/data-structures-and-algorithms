@@ -48,9 +48,7 @@ module.exports = (arr, classType) => {
         });
 
         // Merge the arrays with the original
-        const leftIndex = start;
-        const rightIndex = mid + 1;
-        const arrayIndex = 0;
+        let arrayIndex = 0;
 
         // Add the smaller of both iterations of left and right to the array
         leftArr.forEach((item, index) => {
