@@ -52,28 +52,26 @@ module.exports = (arr, classType) => {
 
         // Add the smaller of both iterations of left and right to the array
         leftArr.forEach((item, index) => {
-            if (rightArr[index] && rightArr[index].key) {
-                if (item.key <= rightArr[index].key) {
-                    if (!classType) {
-                        newArr[arrayIndex] = item;
-                    } else {
-                        newArr[arrayIndex] = new classType(item.key, item.data); // Left array item
-                    }
-                    leftArr.splice(index, 1);
-                    arrayIndex++;
+            if (!rightArr[index] || item.key <= rightArr[index].key) {
+                if (!classType) {
+                    newArr[arrayIndex] = item;
                 } else {
-                    const rightItem = rightArr[index];
-                    if (!classType) {
-                        newArr[arrayIndex] = rightItem;
-                    } else {
-                        newArr[arrayIndex] = new classType(
-                            rightItem.key,
-                            rightItem.data
-                        );
-                    }
-                    rightArr.splice(index, 1);
-                    arrayIndex++;
+                    newArr[arrayIndex] = new classType(item.key, item.data); // Left array item
                 }
+                leftArr.splice(index, 1);
+                arrayIndex++;
+            } else {
+                const rightItem = rightArr[index];
+                if (!classType) {
+                    newArr[arrayIndex] = rightItem;
+                } else {
+                    newArr[arrayIndex] = new classType(
+                        rightItem.key,
+                        rightItem.data
+                    );
+                }
+                rightArr.splice(index, 1);
+                arrayIndex++;
             }
         });
 
