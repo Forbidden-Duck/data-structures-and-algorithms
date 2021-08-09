@@ -160,3 +160,12 @@ This project was not designed with the intent that non of the models, sorting al
     > `.size (property)` _number_ type\
     > `.toBFS() (method)` => _GraphNode[]_ type\
     > `.toDFS() (method)` => _GraphNode[]_ type
+
+### **[Algorithms](https://github.com/Forbidden-Duck/data-structures-and-algorithms/tree/master/src/sorting)**
+
+-   [MergeSort](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/sorting/MergeSort.js)
+    > `(originalArr: any[], classType?: class)` => _any[]_ type
+-   [BubbleSort](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/sorting/BubbleSort.js)
+    > `(originalArr: any[], classType?: class)` => _any[]_ type
+-   [QuickSort](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/sorting/QuickSort.js)
+    > `(originalArr: any[], classType?: class)` => _any[]_ type
