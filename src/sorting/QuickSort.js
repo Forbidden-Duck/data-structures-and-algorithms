@@ -45,7 +45,7 @@ module.exports = (originalArr, classType) => {
         return i + 1;
     };
     // Step 4: Run the algorithm
-    sort(arr, 0, keyArr.length - 1);
+    sort(keyArr, 0, keyArr.length - 1);
     // Step 5: Convert the keys back into nodes
     const cloneArr = [];
     keyArr.forEach((key) => {
