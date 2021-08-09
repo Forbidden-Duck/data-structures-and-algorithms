@@ -7,15 +7,18 @@ This project was not designed with the intent that non of the models, sorting al
 ### **[Models](https://github.com/Forbidden-Duck/data-structures-and-algorithms/tree/master/src/models)**
 
 -   [SingleNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/SingleNode.js)
+    > `constructor(data: any)`\
     > `.data (property)` _any_ type\
     > `.next (property)` _SingleNode_ type\
     > `.compareInstance(a: SingleNode, b: SingleNode) (static method)` => _boolean_ type
 -   [DoubleNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/DoubleNode.js)
+    > `constructor(data: any)`\
     > `.data (property)` _any_ type\
     > `.next (property)` _DoubleNode_ type\
     > `.previous (property)` _DoubleNode_ type\
     > `.compareInstance(a: DoubleNode, b: DoubleNode) (static method)` => _boolean_ type
 -   [TreeNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/TreeNode.js)
+    > `constructor(key: number, data: any)`\
     > `.key (property)` _number_ type\
     > `.data (property)` _any_ type\
     > `.left (property)` _TreeNode_ type\
@@ -23,10 +26,12 @@ This project was not designed with the intent that non of the models, sorting al
     > `.parent (property)` _TreeNode_ type\
     > `.compareInstance(a: TreeNode, b: TreeNode) (static method)` => _boolean_ type
 -   [HeapNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/HeapNode.js)
+    > `constructor(key: number, data: any)`\
     > `.key (property)` _number_ type\
     > `.data (property)` _any_ type\
     > `.compareInstance(a: HeapNode, b: HeapNode) (static method)` => _boolean_ type
 -   [GraphNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/GraphNode.js)
+    > `constructor(key: number, data: any)`\
     > `.key (property)` _number_ type\
     > `.data (property)` _any_ type\
     > `.getEdge(node: GraphNode) (method)` => _GraphNode_ type\
