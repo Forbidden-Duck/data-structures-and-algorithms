@@ -1,57 +1,35 @@
 # Data Structures and Algorithms
 
-This project is currently under-development.
+This project was not designed with the intent that non of the models, sorting algorithms and data structures would be used. This project was completed with the sole intent of broading my own knowledge and assisting others who required help with building similar data structures and algorithms.
 
-## What will it include?
+## What is included
 
-**1. Models of SingleNode and DoubleNode**
+### **[Models](https://github.com/Forbidden-Duck/data-structures-and-algorithms/tree/master/src/models)**
 
--   SingleNode is designed to only store the data you include and the next SingleNode instance
--   DoubleNode is similarly designed however it includes the previous DoubleNode instance
-
-**2. SinglyLinkedList and DoublyLinkedList**
-
--   SinglyLinkedList uses SingleNode to create a linked list
--   DoublyLinkedList uses DoubleNode to create a linked list
-
-**3. Queues**
-
--   Uses SinglyLinkedList to hold a queue of elements
--   Enqueue to the back of the queue
--   Dequeue from the front of the queue
-
-**4. Stacks**
-
--   Uses SinglyLinkedList to hold a stack of elements
--   Push to the front of the stack
--   Pop from the front of the stack
-
-**5. Hash Maps**
-
--   Uses SinglyLinkedList as buckets that hold data
--   The amount of buckets is relative to the size specified (default is 32)
-
-**6. Binary Tree**
-
--   TreeNode is designed to hold key, data, left child, right child and parent node
-
-**7. Heaps**
-
--   HeapNode is designed to only hold the key and data, the classes themselves manage what the order is
-
-**8. Graphs**
-
--   GraphNode is designed to hold key, data and all the edges related to that node
--   GraphNode uses HashMap to store the edges
--   Graph uses HashMap to store vertices
-
-**9. Algorithms**
-
--   Merge Sort
--   Bubble Sort
--   Quicksort
-
-**10. Search and Graph Search Algorithms**
-
--   Binary Search and Search Trees
--   Graph Traversals
+-   [SingleNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/SingleNode.js)
+    > `.data (property)` _any_ type\
+    > `.next (property)` _SingleNode_ type\
+    > `.compareInstance(a: SingleNode, b: SingleNode) (static method)` => _boolean_ type
+-   [DoubleNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/DoubleNode.js)
+    > `.data (property)` _any_ type\
+    > `.next (property)` _DoubleNode_ type\
+    > `.previous (property)` _DoubleNode_ type\
+    > `.compareInstance(a: DoubleNode, b: DoubleNode) (static method)` => _boolean_ type
+-   [TreeNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/TreeNode.js)
+    > `.key (property)` _number_ type\
+    > `.data (property)` _any_ type\
+    > `.left (property)` _TreeNode_ type\
+    > `.right (property)` _TreeNode_ type\
+    > `.parent (property)` _TreeNode_ type\
+    > `.compareInstance(a: TreeNode, b: TreeNode) (static method)` => _boolean_ type
+-   [HeapNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/HeapNode.js)
+    > `.key (property)` _number_ type\
+    > `.data (property)` _any_ type\
+    > `.compareInstance(a: HeapNode, b: HeapNode) (static method)` => _boolean_ type
+-   [GraphNode](https://github.com/Forbidden-Duck/data-structures-and-algorithms/blob/master/src/models/GraphNode.js)
+    > `.key (property)` _number_ type\
+    > `.data (property)` _any_ type\
+    > `.getEdge(node: GraphNode) (method)` => _GraphNode_ type\
+    > `.addEdge(node: GraphNode) (method)` => _GraphNode_ type\
+    > `.deleteEdge(key: number) (method)` => _void_ type\
+    > `.compareInstance(a: GraphNode, b: GraphNode) (static method)` => _boolean_ type
