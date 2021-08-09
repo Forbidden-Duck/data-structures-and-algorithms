@@ -2,6 +2,11 @@
 
 This project was not designed with the intent that non of the models, sorting algorithms and data structures would be used. This project was completed with the sole intent of broading my own knowledge and assisting others who required help with building similar data structures and algorithms.
 
+## Testing
+
+    1. Change to the root directory of the project
+    2. Run "npm test" (Will include a coverage folder)
+
 ## What is included
 
 ### **[Models](https://github.com/Forbidden-Duck/data-structures-and-algorithms/tree/master/src/models)**
